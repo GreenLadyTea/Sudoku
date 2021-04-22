@@ -1,4 +1,11 @@
-import puzzles from './puzzles.json';
+import json from './puzzles.json';
+
+type PUZZLES_TYPE = {
+  [key: string]: {
+    game: number[][];
+    solution: number[][];
+  };
+};
 
 export const ROWS = 9;
 export const COLUMNS = 9;
@@ -12,13 +19,15 @@ export interface CellType {
 
 export type GridType = CellType[][];
 
-export function makeGrid(): GridType {
+const puzzles: PUZZLES_TYPE = json;
+
+export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
   let matrix: GridType = [];
   let index = 0;
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     matrix[rowIndex] = [];
     for (let columnIndex = 0; columnIndex < COLUMNS; columnIndex++) {
-      const value = puzzles.firstPuzzle.game[rowIndex][columnIndex];
+      const value = puzzles[puzzleName].game[rowIndex][columnIndex];
       matrix[rowIndex][columnIndex] = {
         id: index++,
         value,
