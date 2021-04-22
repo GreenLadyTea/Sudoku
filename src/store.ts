@@ -18,10 +18,10 @@ export interface CellType {
   isChecked: boolean;
 }
 
-export type Grid = CellType[][];
+export type GridType = CellType[][];
 
-export function makeGrid(): Grid {
-  let matrix: Grid = [];
+export function makeGrid(): GridType {
+  let matrix: GridType = [];
   let index = 0;
   for (let i = 0; i < 9; i++) {
     matrix[i] = [];
@@ -37,7 +37,7 @@ export function makeGrid(): Grid {
   return matrix;
 }
 
-export const initialState: Grid = makeGrid();
+export const initialState: GridType = makeGrid();
 
 export enum ACTION_TYPES {
   CHANGE = 'change'
@@ -50,7 +50,7 @@ export interface ActionChange {
 
 export type Action = ActionChange;
 
-export default function reducer(state = initialState, action: Action): Grid {
+export default function reducer(state = initialState, action: Action): GridType {
   switch (action.type) {
     case ACTION_TYPES.CHANGE:
       return state;

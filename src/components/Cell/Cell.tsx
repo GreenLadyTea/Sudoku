@@ -1,5 +1,6 @@
 import React from 'react';
 import { CellType } from '../../store';
+import './Cell.css';
 
 export default function Cell(cell: CellType) {
   return (
