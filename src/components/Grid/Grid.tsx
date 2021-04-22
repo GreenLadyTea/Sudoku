@@ -3,7 +3,11 @@ import { GridType } from '../../store';
 import Cell from '../Cell/Cell';
 import './Grid.css';
 
-export default function Grid({ matrix }: { matrix: GridType }) {
+type GridProps = {
+  matrix: GridType;
+};
+
+export default function Grid({ matrix }: GridProps) {
   return (
     <>
       <div className="grid-container" data-testid="grid">
