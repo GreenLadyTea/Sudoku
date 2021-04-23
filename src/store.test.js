@@ -10,7 +10,9 @@ test('Создается сетка', () => {
       expect(grid[rowIndex][columnIndex].value).toEqual(
         puzzles.firstPuzzle.game[rowIndex][columnIndex]
       );
-      expect(grid[rowIndex][columnIndex].isChangeable).toEqual(grid[rowIndex][columnIndex].value === 0);
+      expect(grid[rowIndex][columnIndex].isChangeable).toEqual(
+        grid[rowIndex][columnIndex].value === 0
+      );
       expect(grid[rowIndex][columnIndex].isChecked).toBe(false);
     }
   }
