@@ -1,5 +1,7 @@
 import json from './puzzles.json';
 
+export const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 type PUZZLES_TYPE = {
   [key: string]: {
     game: number[][];
