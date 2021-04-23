@@ -5,7 +5,7 @@ import Button from './Button';
 const digit = 4;
 
 test('Рендерится компонент', () => {
-  render(<Button digit={4} />);
+  render(<Button digit={digit} />);
   const element = screen.getByTestId('button');
   expect(element).toBeInTheDocument();
   expect(element).toBeVisible();

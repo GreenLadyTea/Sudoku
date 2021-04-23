@@ -42,3 +42,4 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
 }
 
 export const initialState: GridType = makeGrid();
+
