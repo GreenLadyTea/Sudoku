@@ -42,7 +42,7 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
   return matrix;
 }
 
-export const initialState: GridType = makeGrid();
+export const initialState: GridType = makeGrid('secondPuzzle');
 
 export enum ACTION_TYPES {
   CHOOSE_CELL = 'chooseCell',
@@ -68,9 +68,10 @@ export function reducer(state = initialState, action: Action): GridType {
         state[rowIndex] = state[rowIndex].map(cell => {
           if (cell.id === action.payload) {
             return { ...cell, isChecked: true };
-          } else {
+          } else if (cell.isChecked) {
             return { ...cell, isChecked: false };
           }
+          return cell;
         });
       }
       return [...state];

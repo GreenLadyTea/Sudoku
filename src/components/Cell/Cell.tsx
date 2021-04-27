@@ -8,7 +8,7 @@ export default function Cell(cell: CellType) {
   return (
     <>
       <div
-        className={cell.value === 0 ? 'empty-cell' : 'cell'}
+        className={cell.value === 0 ? 'empty-cell' : 'unchangeable_cell'}
         data-testid="cell"
         onClick={() => dispatch(chooseCell(cell.id))}
       >
