@@ -1,10 +1,13 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import Grid from './Grid';
 import { COLUMNS, initialState, ROWS } from '../../store';
+import { makeTestStore, testRender } from '../../setupTests';
+
+const store = makeTestStore({ initialState });
 
 test('Рендерится компонент', () => {
-  render(<Grid matrix={initialState} />);
+  testRender(<Grid matrix={initialState} />, { store });
   const element = screen.getByTestId('grid');
   expect(element).toBeInTheDocument();
   expect(element).toBeVisible();

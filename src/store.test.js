@@ -1,4 +1,4 @@
-import { ACTION_TYPES, COLUMNS, initialState, makeGrid, reducer, ROWS } from './store';
+import { ACTION_TYPES, chooseCell, COLUMNS, initialState, makeGrid, reducer, ROWS } from './store';
 import puzzles from './puzzles.json';
 
 test('Создается сетка', () => {
@@ -26,4 +26,13 @@ test('При вызове редьюсера с экшеном chooseCell воз
   };
   const result = reducer(initialState, choose_cell);
   expect(result[1][1].isChecked).toBe(true);
+});
+
+test('Создатель экшна chooseCell создает новый экшн типа CHOOSE_CELL и с payload равным тому, что ему было передано в параметре', () => {
+  const id = 10;
+  const expectedAction = {
+    type: ACTION_TYPES.CHOOSE_CELL,
+    payload: id
+  };
+  expect(chooseCell(id)).toEqual(expectedAction);
 });

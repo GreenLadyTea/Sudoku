@@ -1,9 +1,13 @@
 import React from 'react';
-import { screen, render } from '@testing-library/react';
+import { screen } from '@testing-library/react';
 import Menu from './Menu';
+import { makeTestStore, testRender } from '../../setupTests';
+import { initialState } from '../../store';
+
+const store = makeTestStore({ initialState });
 
 test('Отображается 9 кнопок с цифрами', () => {
-  render(<Menu />);
+  testRender(<Menu />, { store });
   const elements = screen.getAllByTestId('button');
   expect(elements).toHaveLength(9);
   for (let i = 0; i < 9; i++) {
