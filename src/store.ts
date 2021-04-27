@@ -45,7 +45,8 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
 export const initialState: GridType = makeGrid();
 
 export enum ACTION_TYPES {
-  CHOOSE_CELL = 'chooseCell'
+  CHOOSE_CELL = 'chooseCell',
+  ASSIGN_DIGIT = 'assignDigit'
 }
 
 export interface ActionChooseCell {
@@ -53,7 +54,12 @@ export interface ActionChooseCell {
   payload: number;
 }
 
-export type Action = ActionChooseCell;
+export interface ActionAssignDigit {
+  type: ACTION_TYPES.ASSIGN_DIGIT;
+  payload: number;
+}
+
+export type Action = ActionChooseCell | ActionAssignDigit;
 
 export function reducer(state = initialState, action: Action): GridType {
   switch (action.type) {
@@ -69,16 +75,32 @@ export function reducer(state = initialState, action: Action): GridType {
           }
         }
       }
-      return { ...state };
+      return state;
+    }
+    case ACTION_TYPES.ASSIGN_DIGIT: {
+      for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
+        for (let columnIndex = 0; columnIndex < COLUMNS; columnIndex++) {
+          if (state[rowIndex][columnIndex].isChecked) {
+            state[rowIndex][columnIndex].value = action.payload;
+            console.log(state[rowIndex][columnIndex].value);
+          }
+        }
+      }
+      return state;
     }
     default:
       return state;
   }
 }
 
-export const chooseCell = (id: number) => ({
+export const chooseCell = (content: number) => ({
   type: ACTION_TYPES.CHOOSE_CELL,
-  payload: id
+  payload: content
+});
+
+export const assignDigit = (content: number) => ({
+  type: ACTION_TYPES.ASSIGN_DIGIT,
+  payload: content
 });
 
 export const store = createStore(reducer);

@@ -12,7 +12,9 @@ const isChecked = false;
 const store = makeTestStore({ initialState });
 
 test('Клетка рендерится', () => {
-  testRender(<Cell id={id} value={0} isChangeable={isChangeable} isChecked={isChecked} />, { store });
+  testRender(<Cell id={id} value={0} isChangeable={isChangeable} isChecked={isChecked} />, {
+    store
+  });
   const element = screen.getByTestId('cell');
   expect(element).toBeInTheDocument();
   expect(element).toBeVisible();
@@ -20,7 +22,9 @@ test('Клетка рендерится', () => {
 });
 
 test('При нажатии на клетку вызывается store.dispatch с параметром id', () => {
-  testRender(<Cell id={id} value={0} isChangeable={isChangeable} isChecked={isChecked} />, { store });
+  testRender(<Cell id={id} value={0} isChangeable={isChangeable} isChecked={isChecked} />, {
+    store
+  });
   const element = screen.getByTestId('cell');
   expect(element).toBeInTheDocument();
   expect(store.dispatch).not.toBeCalled();

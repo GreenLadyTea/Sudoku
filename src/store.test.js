@@ -1,4 +1,13 @@
-import { ACTION_TYPES, chooseCell, COLUMNS, initialState, makeGrid, reducer, ROWS } from './store';
+import {
+  ACTION_TYPES,
+  assignDigit,
+  chooseCell,
+  COLUMNS,
+  initialState,
+  makeGrid,
+  reducer,
+  ROWS
+} from './store';
 import puzzles from './puzzles.json';
 
 test('Создается сетка', () => {
@@ -29,10 +38,19 @@ test('При вызове редьюсера с экшеном chooseCell воз
 });
 
 test('Создатель экшна chooseCell создает новый экшн типа CHOOSE_CELL и с payload равным тому, что ему было передано в параметре', () => {
-  const id = 10;
+  const content = 10;
   const expectedAction = {
     type: ACTION_TYPES.CHOOSE_CELL,
-    payload: id
+    payload: content
   };
-  expect(chooseCell(id)).toEqual(expectedAction);
+  expect(chooseCell(content)).toEqual(expectedAction);
+});
+
+test('Создатель экшна assignDigit создает новый экшн типа ASSIGN_DIGIT и с payload равным тому, что ему было передано в параметре', () => {
+  const content = 10;
+  const expectedAction = {
+    type: ACTION_TYPES.ASSIGN_DIGIT,
+    payload: content
+  };
+  expect(assignDigit(content)).toEqual(expectedAction);
 });

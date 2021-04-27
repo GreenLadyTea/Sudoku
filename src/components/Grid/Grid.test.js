@@ -6,7 +6,7 @@ import { makeTestStore, testRender } from '../../setupTests';
 
 const store = makeTestStore({ initialState });
 
-test('Рендерится компонент', () => {
+test('Сетка рендерится', () => {
   testRender(<Grid matrix={initialState} />, { store });
   const element = screen.getByTestId('grid');
   expect(element).toBeInTheDocument();
