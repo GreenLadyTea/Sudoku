@@ -65,28 +65,29 @@ export function reducer(state = initialState, action: Action): GridType {
   switch (action.type) {
     case ACTION_TYPES.CHOOSE_CELL: {
       for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
-        for (let columnIndex = 0; columnIndex < COLUMNS; columnIndex++) {
-          if (state[rowIndex][columnIndex].id === action.payload) {
-            state[rowIndex][columnIndex].isChecked = !state[rowIndex][columnIndex].isChecked;
-            console.log(state[rowIndex][columnIndex]);
-            console.log(rowIndex, columnIndex);
+        state[rowIndex] = state[rowIndex].map(cell => {
+          if (cell.id === action.payload) {
+            return { ...cell, isChecked: true };
           } else {
-            state[rowIndex][columnIndex].isChecked = false;
+            return { ...cell, isChecked: false };
           }
-        }
+        });
       }
-      return state;
+      return [...state];
     }
     case ACTION_TYPES.ASSIGN_DIGIT: {
       for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
-        for (let columnIndex = 0; columnIndex < COLUMNS; columnIndex++) {
-          if (state[rowIndex][columnIndex].isChecked) {
-            state[rowIndex][columnIndex].value = action.payload;
-            console.log(state[rowIndex][columnIndex].value);
+        state[rowIndex] = state[rowIndex].map(cell => {
+          if (cell.isChecked && cell.isChangeable) {
+            return {
+              ...cell,
+              value: action.payload
+            };
           }
-        }
+          return cell;
+        });
       }
-      return state;
+      return [...state];
     }
     default:
       return state;
