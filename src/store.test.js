@@ -1,4 +1,4 @@
-import { COLUMNS, makeGrid, ROWS } from './store';
+import { ACTION_TYPES, COLUMNS, initialState, makeGrid, reducer, ROWS } from './store';
 import puzzles from './puzzles.json';
 
 test('Создается сетка', () => {
@@ -16,4 +16,14 @@ test('Создается сетка', () => {
       expect(grid[rowIndex][columnIndex].isChecked).toBe(false);
     }
   }
+});
+
+test('При вызове редьюсера с экшеном chooseCell возвращается состояние стора, в котором выбранная клетка меняет состояние isChecked на true', () => {
+  const id = 10;
+  const choose_cell = {
+    type: ACTION_TYPES.CHOOSE_CELL,
+    payload: id
+  };
+  const result = reducer(initialState, choose_cell);
+  expect(result[1][1].isChecked).toBe(true);
 });

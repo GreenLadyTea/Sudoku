@@ -12,7 +12,9 @@ test('Рендерится компонент', () => {
   let index = 0;
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     for (let columnIndex = 0; columnIndex < COLUMNS; columnIndex++) {
-      expect(elements[(index * 9 + columnIndex)]).toHaveTextContent(initialState[rowIndex][columnIndex].value.toString())
+      expect(elements[index * ROWS + columnIndex]).toHaveTextContent(
+        initialState[rowIndex][columnIndex].value.toString()
+      );
     }
     index++;
   }
