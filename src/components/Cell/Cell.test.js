@@ -35,7 +35,7 @@ test('При нажатии на клетку вызывается store.dispatc
   expect(store.dispatch).toBeCalledWith(selectCell(id));
 });
 
-test('Невыделенная клетка со значением 0 имеет класс empty-cell', () => {
+test('Невыделенная пустая клетка имеет класс empty-cell', () => {
   testRender(<Cell id={id} value={zero} isChangeable={changeable} isChecked={notChecked} />, {
     store
   });
@@ -51,7 +51,7 @@ test('Выделенная непустая изменяемая клетка и
   expect(element).toHaveClass(cellStyles.SELECTED);
 });
 
-test('Выделенная клетка со значением 0 имеет класс selected-empty-cell', () => {
+test('Выделенная пустая клетка имеет класс selected-empty-cell', () => {
   testRender(<Cell id={id} value={zero} isChangeable={changeable} isChecked={checked} />, {
     store
   });
@@ -75,7 +75,7 @@ test('Неизменяемая клетка имеет класс unchangeable-c
   expect(element).toHaveClass(cellStyles.UNCHANGEABLE);
 });
 
-test('Если клетка не выделена и со значением 0, то функция stylizeCell возвращает класс empty', () => {
+test('Если клетка не выделена и пуста, то функция stylizeCell возвращает класс empty', () => {
   const cell = {
     id: id,
     value: zero,
@@ -86,7 +86,7 @@ test('Если клетка не выделена и со значением 0, 
   expect(result).toEqual(cellStyles.EMPTY);
 });
 
-test('Если клетка не выделена, изменяемая и не нулевая, то функция stylizeCell возвращает класс changeable', () => {
+test('Если клетка не выделена, изменяемая и непустая, то функция stylizeCell возвращает класс changeable', () => {
   const cell = {
     id: id,
     value: notZero,
@@ -108,7 +108,7 @@ test('Если клетка не выделена и неизменяемая, �
   expect(result).toEqual(cellStyles.UNCHANGEABLE);
 });
 
-test('Если клетка выделена и со значением 0, то функция stylizeCell возвращает класс selected-empty', () => {
+test('Если клетка выделена и пустая, то функция stylizeCell возвращает класс selected-empty', () => {
   const cell = {
     id: id,
     value: zero,
@@ -119,7 +119,7 @@ test('Если клетка выделена и со значением 0, то 
   expect(result).toEqual(cellStyles.SELECTED_EMPTY);
 });
 
-test('Если клетка выделена и не нулевая, то функция stylizeCell возвращает класс selected', () => {
+test('Если клетка выделена и не пустая, то функция stylizeCell возвращает класс selected', () => {
   const cell = {
     id: id,
     value: notZero,
