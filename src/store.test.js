@@ -1,7 +1,7 @@
 import {
   ACTION_TYPES,
   assignDigit,
-  chooseCell,
+  selectCell,
   COLUMNS,
   initialState,
   makeGrid,
@@ -30,7 +30,7 @@ test('Создается сетка', () => {
 test('При вызове редьюсера с экшеном chooseCell возвращается состояние стора, в котором выбранная клетка меняет состояние isChecked на true', () => {
   const id = 10;
   const choose_cell = {
-    type: ACTION_TYPES.CHOOSE_CELL,
+    type: ACTION_TYPES.SELECT_CELL,
     payload: id
   };
   const result = reducer(initialState, choose_cell);
@@ -52,10 +52,10 @@ test('При вызове редьюсера с экшеном assignDigit во�
 test('Создатель экшна chooseCell создает новый экшн типа CHOOSE_CELL и с payload равным тому, что ему было передано в параметре', () => {
   const content = 10;
   const expectedAction = {
-    type: ACTION_TYPES.CHOOSE_CELL,
+    type: ACTION_TYPES.SELECT_CELL,
     payload: content
   };
-  expect(chooseCell(content)).toEqual(expectedAction);
+  expect(selectCell(content)).toEqual(expectedAction);
 });
 
 test('Создатель экшна assignDigit создает новый экшн типа ASSIGN_DIGIT и с payload равным тому, что ему было передано в параметре', () => {

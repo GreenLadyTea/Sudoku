@@ -1,10 +1,26 @@
 .unchangeable_cell {
     background-color: #ffffff;
 }
+
 .empty-cell {
     color: white;
 }
+
+.selected-empty-cell {
+    color: #b6b6b6;
+    background-color: #b6b6b6;
+}
+
 .empty-cell:hover {
     color: #b8b8b8;
     background-color: #b8b8b8;
+}
+
+.selected-cell {
+    background-color: #b6b6b6;
+    color: #008b00;
+}
+
+.changeable-cell {
+    color: #008b00;
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Cell from './Cell';
 import { screen, fireEvent } from '@testing-library/react';
 import { makeTestStore, testRender } from '../../setupTests';
-import { chooseCell, initialState } from '../../store';
+import { selectCell, initialState } from '../../store';
 
 const id = 1;
 const value = 0;
@@ -29,5 +29,5 @@ test('При нажатии на клетку вызывается store.dispatc
   expect(element).toBeInTheDocument();
   expect(store.dispatch).not.toBeCalled();
   fireEvent.click(element);
-  expect(store.dispatch).toBeCalledWith(chooseCell(id));
+  expect(store.dispatch).toBeCalledWith(selectCell(id));
 });
