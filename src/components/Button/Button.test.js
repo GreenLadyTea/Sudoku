@@ -16,7 +16,7 @@ test('Кнопка рендерится', () => {
   expect(element).toHaveTextContent(digit);
 });
 
-test('При нажатии на клетку вызывается store.dispatch с параметром id', () => {
+test('При нажатии на кнопку вызывается store.dispatch с параметром id', () => {
   testRender(<Button digit={digit} />, { store });
   const element = screen.getByTestId('button');
   expect(element).toBeInTheDocument();
