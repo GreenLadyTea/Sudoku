@@ -20,14 +20,14 @@ test('Создается сетка', () => {
         puzzles.firstPuzzle.game[rowIndex][columnIndex]
       );
       expect(grid[rowIndex][columnIndex].isChangeable).toEqual(
-        grid[rowIndex][columnIndex].value === 0
+        grid[rowIndex][columnIndex].value === ''
       );
       expect(grid[rowIndex][columnIndex].isChecked).toBe(false);
     }
   }
 });
 
-test('При вызове редьюсера с экшеном chooseCell возвращается состояние стора, в котором выбранная клетка меняет состояние isChecked на true', () => {
+test('При вызове редьюсера с экшеном selectCell возвращается состояние стора, в котором выбранная клетка меняет состояние isChecked на true', () => {
   const id = 10;
   const choose_cell = {
     type: ACTION_TYPES.SELECT_CELL,
@@ -38,7 +38,7 @@ test('При вызове редьюсера с экшеном chooseCell воз
 });
 
 test('При вызове редьюсера с экшеном assignDigit возвращается состояние стора, в котором выбранная клетка меняет value на значение кнопки', () => {
-  const digit = 7;
+  const digit = '7';
   const assign_digit = {
     type: ACTION_TYPES.ASSIGN_DIGIT,
     payload: digit
@@ -49,7 +49,7 @@ test('При вызове редьюсера с экшеном assignDigit во�
   expect(result[1][2].value).toEqual(digit);
 });
 
-test('Создатель экшна chooseCell создает новый экшн типа CHOOSE_CELL и с payload равным тому, что ему было передано в параметре', () => {
+test('Создатель экшна selectCell создает новый экшн типа CHOOSE_CELL и с payload равным тому, что ему было передано в параметре', () => {
   const content = 10;
   const expectedAction = {
     type: ACTION_TYPES.SELECT_CELL,
@@ -59,7 +59,7 @@ test('Создатель экшна chooseCell создает новый экш�
 });
 
 test('Создатель экшна assignDigit создает новый экшн типа ASSIGN_DIGIT и с payload равным тому, что ему было передано в параметре', () => {
-  const content = 10;
+  const content = '7';
   const expectedAction = {
     type: ACTION_TYPES.ASSIGN_DIGIT,
     payload: content

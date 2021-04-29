@@ -1,11 +1,11 @@
 import json from './puzzles.json';
 import { createStore } from 'redux';
 
-export const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+export const digits = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
 
 type PUZZLES_TYPE = {
   [key: string]: {
-    game: number[][];
+    game: string[][];
     solution: number[][];
   };
 };
@@ -15,7 +15,7 @@ export const COLUMNS = 9;
 
 export interface CellType {
   id: number;
-  value: number;
+  value: string;
   isChangeable: boolean;
   isChecked: boolean;
 }
@@ -34,7 +34,7 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
       matrix[rowIndex][columnIndex] = {
         id: index++,
         value,
-        isChangeable: value === 0,
+        isChangeable: value === '',
         isChecked: false
       };
     }
@@ -42,7 +42,7 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
   return matrix;
 }
 
-export const initialState: GridType = makeGrid('secondPuzzle');
+export const initialState: GridType = makeGrid();
 
 export enum ACTION_TYPES {
   SELECT_CELL = 'selectCell',
@@ -56,7 +56,7 @@ export interface ActionSelectCell {
 
 export interface ActionAssignDigit {
   type: ACTION_TYPES.ASSIGN_DIGIT;
-  payload: number;
+  payload: string;
 }
 
 export type Action = ActionSelectCell | ActionAssignDigit;
@@ -100,7 +100,7 @@ export const selectCell = (content: number) => ({
   payload: content
 });
 
-export const assignDigit = (content: number) => ({
+export const assignDigit = (content: string) => ({
   type: ACTION_TYPES.ASSIGN_DIGIT,
   payload: content
 });

@@ -16,7 +16,7 @@ test('Сетка рендерится', () => {
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     for (let columnIndex = 0; columnIndex < COLUMNS; columnIndex++) {
       expect(elements[index * ROWS + columnIndex]).toHaveTextContent(
-        initialState[rowIndex][columnIndex].value.toString()
+        initialState[rowIndex][columnIndex].value
       );
     }
     index++;

@@ -5,8 +5,8 @@ import { makeTestStore, testRender } from '../../setupTests';
 import { selectCell, initialState } from '../../store';
 
 const id = 1;
-const zero = 0;
-const notZero = 3;
+const zero = '';
+const notZero = '3';
 const changeable = true;
 const notChangeable = false;
 const checked = true;
@@ -21,7 +21,7 @@ test('Клетка рендерится', () => {
   const element = screen.getByTestId('cell');
   expect(element).toBeInTheDocument();
   expect(element).toBeVisible();
-  expect(element).toHaveTextContent(zero.toString());
+  expect(element).toHaveTextContent(zero);
 });
 
 test('При нажатии на клетку вызывается store.dispatch с параметром id', () => {
@@ -36,31 +36,41 @@ test('При нажатии на клетку вызывается store.dispatc
 });
 
 test('Невыделенная клетка со значением 0 имеет класс empty-cell', () => {
-  testRender(<Cell id={id} value={zero} isChangeable={changeable} isChecked={notChecked} />, { store });
+  testRender(<Cell id={id} value={zero} isChangeable={changeable} isChecked={notChecked} />, {
+    store
+  });
   const element = screen.getByTestId('cell');
   expect(element).toHaveClass(cellStyles.EMPTY);
 });
 
 test('Выделенная непустая изменяемая клетка имеет класс selected-cell', () => {
-  testRender(<Cell id={id} value={notZero} isChangeable={changeable} isChecked={checked} />, { store });
+  testRender(<Cell id={id} value={notZero} isChangeable={changeable} isChecked={checked} />, {
+    store
+  });
   const element = screen.getByTestId('cell');
   expect(element).toHaveClass(cellStyles.SELECTED);
 });
 
 test('Выделенная клетка со значением 0 имеет класс selected-empty-cell', () => {
-  testRender(<Cell id={id} value={zero} isChangeable={changeable} isChecked={checked} />, { store });
+  testRender(<Cell id={id} value={zero} isChangeable={changeable} isChecked={checked} />, {
+    store
+  });
   const element = screen.getByTestId('cell');
   expect(element).toHaveClass(cellStyles.SELECTED_EMPTY);
 });
 
 test('Изменяемая невыделенная непустая клетка имеет класс changeable-cell', () => {
-  testRender(<Cell id={id} value={notZero} isChangeable={changeable} isChecked={notChecked} />, { store });
+  testRender(<Cell id={id} value={notZero} isChangeable={changeable} isChecked={notChecked} />, {
+    store
+  });
   const element = screen.getByTestId('cell');
   expect(element).toHaveClass(cellStyles.CHANGEABLE);
 });
 
 test('Неизменяемая клетка имеет класс unchangeable-cell', () => {
-  testRender(<Cell id={id} value={notZero} isChangeable={notChangeable} isChecked={notChecked} />, { store });
+  testRender(<Cell id={id} value={notZero} isChangeable={notChangeable} isChecked={notChecked} />, {
+    store
+  });
   const element = screen.getByTestId('cell');
   expect(element).toHaveClass(cellStyles.UNCHANGEABLE);
 });
@@ -70,8 +80,8 @@ test('Если клетка не выделена и со значением 0, 
     id: id,
     value: zero,
     isChangeable: changeable,
-    isChecked: notChecked,
-  }
+    isChecked: notChecked
+  };
   const result = stylizeCell(cell);
   expect(result).toEqual(cellStyles.EMPTY);
 });
@@ -81,8 +91,8 @@ test('Если клетка не выделена, изменяемая и не 
     id: id,
     value: notZero,
     isChangeable: changeable,
-    isChecked: notChecked,
-  }
+    isChecked: notChecked
+  };
   const result = stylizeCell(cell);
   expect(result).toEqual(cellStyles.CHANGEABLE);
 });
@@ -92,8 +102,8 @@ test('Если клетка не выделена и неизменяемая, �
     id: id,
     value: notZero,
     isChangeable: notChangeable,
-    isChecked: notChecked,
-  }
+    isChecked: notChecked
+  };
   const result = stylizeCell(cell);
   expect(result).toEqual(cellStyles.UNCHANGEABLE);
 });
@@ -103,8 +113,8 @@ test('Если клетка выделена и со значением 0, то 
     id: id,
     value: zero,
     isChangeable: changeable,
-    isChecked: checked,
-  }
+    isChecked: checked
+  };
   const result = stylizeCell(cell);
   expect(result).toEqual(cellStyles.SELECTED_EMPTY);
 });
@@ -114,8 +124,8 @@ test('Если клетка выделена и не нулевая, то фун
     id: id,
     value: notZero,
     isChangeable: changeable,
-    isChecked: checked,
-  }
+    isChecked: checked
+  };
   const result = stylizeCell(cell);
   expect(result).toEqual(cellStyles.SELECTED);
 });

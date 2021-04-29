@@ -12,9 +12,9 @@ export enum cellStyles {
 }
 
 export function stylizeCell(cell: CellType) {
-  if (cell.value === 0 && !cell.isChecked) {
+  if (cell.value === '' && !cell.isChecked) {
     return cellStyles.EMPTY;
-  } else if (cell.value === 0 && cell.isChecked) {
+  } else if (cell.value === '' && cell.isChecked) {
     return cellStyles.SELECTED_EMPTY;
   } else if (cell.isChecked && cell.isChangeable) {
     return cellStyles.SELECTED;

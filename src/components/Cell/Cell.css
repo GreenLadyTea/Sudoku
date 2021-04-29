@@ -9,6 +9,7 @@
 .selected-empty-cell {
     color: #b6b6b6;
     background-color: #b6b6b6;
+    -moz-user-select: none;
 }
 
 .empty-cell:hover {

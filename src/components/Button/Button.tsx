@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { assignDigit } from '../../store';
 
 type ButtonProps = {
-  digit: number;
+  digit: string;
 };
 
 export default function Button({ digit }: ButtonProps) {

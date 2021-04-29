@@ -4,7 +4,7 @@ import Button from './Button';
 import { makeTestStore, testRender } from '../../setupTests';
 import { assignDigit, initialState } from '../../store';
 
-const digit = 4;
+const digit = '4';
 
 const store = makeTestStore({ initialState });
 
@@ -13,7 +13,7 @@ test('Кнопка рендерится', () => {
   const element = screen.getByTestId('button');
   expect(element).toBeInTheDocument();
   expect(element).toBeVisible();
-  expect(element).toHaveTextContent(digit.toString());
+  expect(element).toHaveTextContent(digit);
 });
 
 test('При нажатии на клетку вызывается store.dispatch с параметром id', () => {
