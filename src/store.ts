@@ -10,6 +10,8 @@ type PUZZLES_TYPE = {
   };
 };
 
+const puzzles: PUZZLES_TYPE = json;
+
 export const ROWS = 9;
 export const COLUMNS = 9;
 
@@ -22,7 +24,11 @@ export interface CellType {
 
 export type GridType = CellType[][];
 
-const puzzles: PUZZLES_TYPE = json;
+export type State = {
+  grid: GridType;
+  currentPuzzle: string;
+  errorCounter: number;
+};
 
 export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
   let matrix: GridType = [];
@@ -42,7 +48,11 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
   return matrix;
 }
 
-export const initialState: GridType = makeGrid();
+export const initialState: State = {
+  grid: makeGrid(),
+  currentPuzzle: 'firstPuzzle',
+  errorCounter: 0
+};
 
 export enum ACTION_TYPES {
   SELECT_CELL = 'selectCell',
@@ -61,11 +71,11 @@ export interface ActionAssignDigit {
 
 export type Action = ActionSelectCell | ActionAssignDigit;
 
-export function reducer(state = initialState, action: Action): GridType {
+export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
     case ACTION_TYPES.SELECT_CELL: {
       for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
-        state[rowIndex] = state[rowIndex].map(cell => {
+        state.grid[rowIndex] = state.grid[rowIndex].map(cell => {
           if (cell.id === action.payload) {
             return { ...cell, isChecked: true };
           } else if (cell.isChecked) {
@@ -74,11 +84,11 @@ export function reducer(state = initialState, action: Action): GridType {
           return cell;
         });
       }
-      return [...state];
+      return { ...state, grid: [...state.grid] };
     }
     case ACTION_TYPES.ASSIGN_DIGIT: {
       for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
-        state[rowIndex] = state[rowIndex].map(cell => {
+        state.grid[rowIndex] = state.grid[rowIndex].map(cell => {
           if (cell.isChecked && cell.isChangeable) {
             return {
               ...cell,
@@ -88,7 +98,7 @@ export function reducer(state = initialState, action: Action): GridType {
           return cell;
         });
       }
-      return [...state];
+      return { ...state, grid: [...state.grid] };
     }
     default:
       return state;

@@ -34,7 +34,7 @@ export default function Cell(cell: CellType) {
         data-testid="cell"
         onClick={() => dispatch(selectCell(cell.id))}
       >
-        {cell.value}
+        {cell.value ? cell.value : ''}
       </div>
     </>
   );

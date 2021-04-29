@@ -1,11 +1,11 @@
 import React from 'react';
-import { GridType } from '../../store';
+import { State } from '../../store';
 import Cell from '../Cell/Cell';
 import './Grid.css';
 import { useSelector } from 'react-redux';
 
 export default function Grid() {
-  const matrix = useSelector((state: GridType) => state);
+  const matrix = useSelector((state: State) => state.grid);
   return (
     <>
       <div className="grid-container" data-testid="grid">
