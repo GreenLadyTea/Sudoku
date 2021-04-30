@@ -10,6 +10,9 @@ import {
 } from './store';
 import puzzles from './puzzles.json';
 
+const rowIndex = 2;
+const columnIndex = 3;
+
 test('Создается сетка', () => {
   const grid = makeGrid();
   expect(grid.length).toBe(ROWS);
@@ -38,15 +41,40 @@ test('При вызове редьюсера с экшеном selectCell воз
 });
 
 test('При вызове редьюсера с экшеном assignDigit возвращается состояние стора, в котором выбранная клетка меняет value на значение кнопки', () => {
-  const digit = '7';
+  const digit = puzzles.firstPuzzle.solution[rowIndex][columnIndex].toString();
   const assign_digit = {
     type: ACTION_TYPES.ASSIGN_DIGIT,
     payload: digit
   };
-  initialState.grid[1][2].isChecked = true;
+  initialState.grid[rowIndex][columnIndex].isChecked = true;
   const result = reducer(initialState, assign_digit);
-  console.log(result.grid[1][2]);
-  expect(result.grid[1][2].value).toEqual(digit);
+  expect(result.grid[rowIndex][columnIndex].value).toEqual(digit);
+});
+
+test('При вызове редьюсера с экшеном assignDigit в сторе не увеличивается errorCounter, если переданное число является верным для данной клетки', () => {
+  const digit = puzzles.firstPuzzle.solution[rowIndex][columnIndex].toString();
+  const assign_digit = {
+    type: ACTION_TYPES.ASSIGN_DIGIT,
+    payload: digit
+  };
+  initialState.grid[rowIndex][columnIndex].isChecked = true;
+  const result = reducer(initialState, assign_digit);
+  expect(result.grid[rowIndex][columnIndex].value).toEqual(digit);
+  expect(result.errorCounter).toEqual(0);
+});
+
+test('При вызове редьюсера с экшеном assignDigit в сторе увеличивается errorCounter, если переданное число не является верным для данной клетки', () => {
+  const digit = '4';
+  const assign_digit = {
+    type: ACTION_TYPES.ASSIGN_DIGIT,
+    payload: digit
+  };
+  initialState.grid[rowIndex][columnIndex].isChecked = true;
+  const result = reducer(initialState, assign_digit);
+  expect(result.grid[rowIndex][columnIndex].value).not.toEqual(
+    puzzles.firstPuzzle.solution[rowIndex][columnIndex]
+  );
+  expect(result.errorCounter).toEqual(1);
 });
 
 test('Создатель экшна selectCell создает новый экшн типа CHOOSE_CELL и с payload равным тому, что ему было передано в параметре', () => {

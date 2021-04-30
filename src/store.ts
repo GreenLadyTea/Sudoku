@@ -20,6 +20,7 @@ export interface CellType {
   value: string;
   isChangeable: boolean;
   isChecked: boolean;
+  isError: boolean;
 }
 
 export type GridType = CellType[][];
@@ -41,7 +42,8 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
         id: index++,
         value,
         isChangeable: value === '',
-        isChecked: false
+        isChecked: false,
+        isError: false
       };
     }
   }
@@ -74,31 +76,41 @@ export type Action = ActionSelectCell | ActionAssignDigit;
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
     case ACTION_TYPES.SELECT_CELL: {
-      for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
-        state.grid[rowIndex] = state.grid[rowIndex].map(cell => {
-          if (cell.id === action.payload) {
-            return { ...cell, isChecked: true };
-          } else if (cell.isChecked) {
-            return { ...cell, isChecked: false };
-          }
-          return cell;
-        });
-      }
-      return { ...state, grid: [...state.grid] };
+      return { ...state, grid: [...selectCellMutator(state.grid, action.payload)] };
     }
     case ACTION_TYPES.ASSIGN_DIGIT: {
+      let isError = false;
       for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
-        state.grid[rowIndex] = state.grid[rowIndex].map(cell => {
+        state.grid[rowIndex] = state.grid[rowIndex].map((cell, cellIndex) => {
           if (cell.isChecked && cell.isChangeable) {
-            return {
-              ...cell,
-              value: action.payload
-            };
+            if (
+              action.payload ===
+              puzzles[state.currentPuzzle].solution[rowIndex][cellIndex].toString()
+            ) {
+              return {
+                ...cell,
+                value: action.payload,
+                isError: false
+              };
+            } else {
+              console.log(state.currentPuzzle, rowIndex, cellIndex, puzzles[state.currentPuzzle].solution[rowIndex][cellIndex]);
+              isError = true;
+              return {
+                ...cell,
+                value: action.payload,
+                isError: true
+              };
+            }
           }
           return cell;
         });
       }
-      return { ...state, grid: [...state.grid] };
+      console.log(isError);
+      return {
+        ...state,
+        grid: [...state.grid],
+        errorCounter: isError ? state.errorCounter + 1 : state.errorCounter
+      };
     }
     default:
       return state;
@@ -114,5 +126,19 @@ export const assignDigit = (content: string) => ({
   type: ACTION_TYPES.ASSIGN_DIGIT,
   payload: content
 });
+
+export function selectCellMutator(grid: GridType, id: number): GridType {
+  for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
+    grid[rowIndex] = grid[rowIndex].map(cell => {
+      if (cell.id === id) {
+        return { ...cell, isChecked: true };
+      } else if (cell.isChecked) {
+        return { ...cell, isChecked: false };
+      }
+      return cell;
+    });
+  }
+  return grid;
+}
 
 export const store = createStore(reducer);

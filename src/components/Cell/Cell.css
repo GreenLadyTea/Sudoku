@@ -1,5 +1,10 @@
-.unchangeable_cell {
+.unchangeable-cell {
     background-color: #ffffff;
+}
+
+.corrupted-cell {
+    background-color: red;
+    color: white;
 }
 
 .empty-cell {

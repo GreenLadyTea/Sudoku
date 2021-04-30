@@ -17,6 +17,7 @@ export default function Grid() {
               value={cell.value}
               isChangeable={cell.isChangeable}
               isChecked={cell.isChecked}
+              isError={cell.isError}
             />
           ))
         )}

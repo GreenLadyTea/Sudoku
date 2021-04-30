@@ -8,10 +8,14 @@ export enum cellStyles {
   UNCHANGEABLE = 'unchangeable-cell',
   SELECTED = 'selected-cell',
   SELECTED_EMPTY = 'selected-empty-cell',
-  CHANGEABLE = 'changeable-cell'
+  CHANGEABLE = 'changeable-cell',
+  CORRUPTED = 'corrupted-cell'
 }
 
 export function stylizeCell(cell: CellType) {
+  if (cell.isError) {
+    return cellStyles.CORRUPTED;
+  }
   if (cell.value === '' && !cell.isChecked) {
     return cellStyles.EMPTY;
   } else if (cell.value === '' && cell.isChecked) {
