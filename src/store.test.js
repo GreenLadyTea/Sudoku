@@ -34,7 +34,7 @@ test('При вызове редьюсера с экшеном selectCell воз
     payload: id
   };
   const result = reducer(initialState, choose_cell);
-  expect(result[1][1].isChecked).toBe(true);
+  expect(result.grid[1][1].isChecked).toBe(true);
 });
 
 test('При вызове редьюсера с экшеном assignDigit возвращается состояние стора, в котором выбранная клетка меняет value на значение кнопки', () => {
@@ -43,10 +43,10 @@ test('При вызове редьюсера с экшеном assignDigit во�
     type: ACTION_TYPES.ASSIGN_DIGIT,
     payload: digit
   };
-  initialState[1][2].isChecked = true;
+  initialState.grid[1][2].isChecked = true;
   const result = reducer(initialState, assign_digit);
-  console.log(result[1][2]);
-  expect(result[1][2].value).toEqual(digit);
+  console.log(result.grid[1][2]);
+  expect(result.grid[1][2].value).toEqual(digit);
 });
 
 test('Создатель экшна selectCell создает новый экшн типа CHOOSE_CELL и с payload равным тому, что ему было передано в параметре', () => {
