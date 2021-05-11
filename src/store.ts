@@ -93,7 +93,12 @@ export function reducer(state = initialState, action: Action): State {
                 isError: false
               };
             } else {
-              console.log(state.currentPuzzle, rowIndex, cellIndex, puzzles[state.currentPuzzle].solution[rowIndex][cellIndex]);
+              console.log(
+                state.currentPuzzle,
+                rowIndex,
+                cellIndex,
+                puzzles[state.currentPuzzle].solution[rowIndex][cellIndex]
+              );
               isError = true;
               return {
                 ...cell,
