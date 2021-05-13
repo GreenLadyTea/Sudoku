@@ -15,9 +15,14 @@ test('Сетка рендерится', () => {
   let index = 0;
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     for (let columnIndex = 0; columnIndex < COLUMNS; columnIndex++) {
-      expect(elements[index * ROWS + columnIndex]).toHaveTextContent(
-        initialState.grid[rowIndex][columnIndex].value
-      );
+      if (initialState.grid[rowIndex][columnIndex].value === 0) {
+        expect(elements[index * ROWS + columnIndex]).toHaveTextContent('');
+      }
+      else {
+        expect(elements[index * ROWS + columnIndex]).toHaveTextContent(
+          initialState.grid[rowIndex][columnIndex].value.toString()
+        );
+      }
     }
     index++;
   }

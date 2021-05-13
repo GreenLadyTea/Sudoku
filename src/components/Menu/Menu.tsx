@@ -15,7 +15,7 @@ export default function Menu() {
         <button
           data-testid="clear-button"
           onClick={() => {
-            dispatch(assignDigit(''));
+            dispatch(assignDigit(0));
           }}
         >
           X

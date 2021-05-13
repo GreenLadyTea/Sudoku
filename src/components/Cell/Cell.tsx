@@ -16,9 +16,9 @@ export function stylizeCell(cell: CellType) {
   if (cell.isError) {
     return cellStyles.CORRUPTED;
   }
-  if (cell.value === '' && !cell.isChecked) {
+  if (cell.value === 0 && !cell.isChecked) {
     return cellStyles.EMPTY;
-  } else if (cell.value === '' && cell.isChecked) {
+  } else if (cell.value === 0 && cell.isChecked) {
     return cellStyles.SELECTED_EMPTY;
   } else if (cell.isChecked && cell.isChangeable) {
     return cellStyles.SELECTED;
@@ -38,7 +38,7 @@ export default function Cell(cell: CellType) {
         data-testid="cell"
         onClick={() => dispatch(selectCell(cell.id))}
       >
-        {cell.value ? cell.value : ''}
+        {cell.value !== 0 ? cell.value : ''}
       </div>
     </>
   );

@@ -22,5 +22,5 @@ test('Отображается кнопка очистки и при нажат�
   expect(element).toHaveTextContent('X');
   expect(store.dispatch).not.toBeCalled();
   fireEvent.click(element);
-  expect(store.dispatch).toBeCalledWith(assignDigit(''));
+  expect(store.dispatch).toBeCalledWith(assignDigit(0));
 });

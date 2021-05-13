@@ -1,11 +1,11 @@
 import json from './puzzles.json';
 import { createStore } from 'redux';
 
-export const digits = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
+export const digits = [1, 2, 3, 4, 5, 6, 7, 8, 9];
 
 type PUZZLES_TYPE = {
   [key: string]: {
-    game: string[][];
+    game: number[][];
     solution: number[][];
   };
 };
@@ -17,7 +17,7 @@ export const COLUMNS = 9;
 
 export interface CellType {
   id: number;
-  value: string;
+  value: number;
   isChangeable: boolean;
   isChecked: boolean;
   isError: boolean;
@@ -41,7 +41,7 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
       matrix[rowIndex][columnIndex] = {
         id: index++,
         value,
-        isChangeable: value === '',
+        isChangeable: value === 0,
         isChecked: false,
         isError: false
       };
@@ -68,7 +68,7 @@ export interface ActionSelectCell {
 
 export interface ActionAssignDigit {
   type: ACTION_TYPES.ASSIGN_DIGIT;
-  payload: string;
+  payload: number;
 }
 
 export type Action = ActionSelectCell | ActionAssignDigit;
@@ -76,16 +76,17 @@ export type Action = ActionSelectCell | ActionAssignDigit;
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
     case ACTION_TYPES.SELECT_CELL: {
-      return { ...state, grid: [...selectCellMutator(state.grid, action.payload)] };
+      return { ...state, grid: selectCellMutator(state.grid, action.payload) };
     }
     case ACTION_TYPES.ASSIGN_DIGIT: {
       let isError = false;
+      const newGrid = [...state.grid];
       for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
-        state.grid[rowIndex] = state.grid[rowIndex].map((cell, cellIndex) => {
+        newGrid[rowIndex] = newGrid[rowIndex].map((cell, cellIndex) => {
           if (cell.isChecked && cell.isChangeable) {
             if (
               action.payload ===
-              puzzles[state.currentPuzzle].solution[rowIndex][cellIndex].toString()
+              puzzles[state.currentPuzzle].solution[rowIndex][cellIndex]
             ) {
               return {
                 ...cell,
@@ -93,12 +94,6 @@ export function reducer(state = initialState, action: Action): State {
                 isError: false
               };
             } else {
-              console.log(
-                state.currentPuzzle,
-                rowIndex,
-                cellIndex,
-                puzzles[state.currentPuzzle].solution[rowIndex][cellIndex]
-              );
               isError = true;
               return {
                 ...cell,
@@ -110,10 +105,9 @@ export function reducer(state = initialState, action: Action): State {
           return cell;
         });
       }
-      console.log(isError);
       return {
         ...state,
-        grid: [...state.grid],
+        grid: [...newGrid],
         errorCounter: isError ? state.errorCounter + 1 : state.errorCounter
       };
     }
@@ -127,14 +121,15 @@ export const selectCell = (content: number) => ({
   payload: content
 });
 
-export const assignDigit = (content: string) => ({
+export const assignDigit = (content: number) => ({
   type: ACTION_TYPES.ASSIGN_DIGIT,
   payload: content
 });
 
 export function selectCellMutator(grid: GridType, id: number): GridType {
+  const newGrid = [...grid];
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
-    grid[rowIndex] = grid[rowIndex].map(cell => {
+    newGrid[rowIndex] = newGrid[rowIndex].map(cell => {
       if (cell.id === id) {
         return { ...cell, isChecked: true };
       } else if (cell.isChecked) {
@@ -143,7 +138,7 @@ export function selectCellMutator(grid: GridType, id: number): GridType {
       return cell;
     });
   }
-  return grid;
+  return newGrid;
 }
 
 export const store = createStore(reducer);
