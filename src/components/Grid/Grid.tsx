@@ -1,5 +1,5 @@
 import React from 'react';
-import { State } from '../../store';
+import { State } from '../../store/store';
 import Cell from '../Cell/Cell';
 import './Grid.css';
 import { useSelector } from 'react-redux';

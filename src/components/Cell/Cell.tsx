@@ -1,7 +1,8 @@
 import React from 'react';
-import { CellType, selectCell } from '../../store';
+import { CellType } from '../../store/store';
 import './Cell.css';
 import { useDispatch } from 'react-redux';
+import { selectCell } from '../../store/actions';
 
 export enum cellStyles {
   EMPTY = 'empty-cell',

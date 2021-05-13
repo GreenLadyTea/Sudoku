@@ -2,7 +2,8 @@ import React from 'react';
 import Cell, { cellStyles, stylizeCell } from './Cell';
 import { screen, fireEvent } from '@testing-library/react';
 import { makeTestStore, testRender } from '../../setupTests';
-import { selectCell, initialState } from '../../store';
+import { initialState } from '../../store/store';
+import { selectCell } from '../../store/actions';
 
 const id = 1;
 const value = 3;
@@ -28,7 +29,7 @@ test('Клетка рендерится', () => {
   expect(element).toHaveTextContent('');
 });
 
-test('При нажатии на клетку вызывается store.dispatch с параметром id', () => {
+test('При нажатии на клетку вызывается index.dispatch с параметром id', () => {
   testRender(
     <Cell id={id} value={0} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
     {

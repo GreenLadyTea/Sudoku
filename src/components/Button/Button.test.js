@@ -2,7 +2,8 @@ import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import Button from './Button';
 import { makeTestStore, testRender } from '../../setupTests';
-import { assignDigit, initialState } from '../../store';
+import { initialState } from '../../store/store';
+import { assignDigit } from '../../store/actions';
 
 const digit = 4;
 
@@ -16,7 +17,7 @@ test('Кнопка рендерится', () => {
   expect(element).toHaveTextContent(digit.toString());
 });
 
-test('При нажатии на кнопку вызывается store.dispatch с параметром id', () => {
+test('При нажатии на кнопку вызывается index.dispatch с параметром id', () => {
   testRender(<Button digit={digit} />, { store });
   const element = screen.getByTestId('button');
   expect(element).toBeInTheDocument();

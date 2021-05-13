@@ -2,7 +2,8 @@ import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import Menu from './Menu';
 import { makeTestStore, testRender } from '../../setupTests';
-import { assignDigit, initialState } from '../../store';
+import { assignDigit } from '../../store/actions';
+import { initialState } from '../../store/store';
 
 const store = makeTestStore({ initialState });
 
@@ -15,7 +16,7 @@ test('Отображается 9 кнопок с цифрами', () => {
   }
 });
 
-test('Отображается кнопка очистки и при нажатии на кнопку вызывается store.dispatch с пустой строкой', () => {
+test('Отображается кнопка очистки и при нажатии на кнопку вызывается index.dispatch с пустой строкой', () => {
   testRender(<Menu />, { store });
   const element = screen.getByTestId('clear-button');
   expect(element).toBeInTheDocument();

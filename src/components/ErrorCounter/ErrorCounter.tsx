@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { State } from '../../store';
+import { State } from '../../store/store';
 import './ErrorCounter.css';
 
 export default function ErrorCounter() {

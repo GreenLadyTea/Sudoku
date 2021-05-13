@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import Grid from './Grid';
-import { COLUMNS, initialState, ROWS } from '../../store';
+import { COLUMNS, initialState, ROWS } from '../../store/store';
 import { makeTestStore, testRender } from '../../setupTests';
 
 const store = makeTestStore({ initialState });

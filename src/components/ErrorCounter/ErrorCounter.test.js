@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import { makeTestStore, testRender } from '../../setupTests';
-import { initialState } from '../../store';
+import { initialState } from '../../store/store';
 import ErrorCounter from './ErrorCounter';
 
 test('Счетчик рендерится', () => {
