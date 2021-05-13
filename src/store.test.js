@@ -33,7 +33,7 @@ test('1 Создается сетка', () => {
 test('2 При вызове редьюсера с экшеном selectCell возвращается состояние стора, в котором выбранная клетка меняет состояние isChecked на true', () => {
   const testState = {
     ...initialState
-  }
+  };
   const id = 10;
   const choose_cell = {
     type: ACTION_TYPES.SELECT_CELL,
@@ -47,7 +47,7 @@ test('2 При вызове редьюсера с экшеном selectCell во
 test('3 При вызове редьюсера с экшеном assignDigit возвращается состояние стора, в котором выбранная клетка меняет value на значение кнопки', () => {
   const testState = {
     ...initialState
-  }
+  };
   const digit = puzzles.firstPuzzle.solution[rowIndex][columnIndex];
   const assign_digit = {
     type: ACTION_TYPES.ASSIGN_DIGIT,
@@ -61,15 +61,15 @@ test('3 При вызове редьюсера с экшеном assignDigit в�
 test('4 При вызове редьюсера с экшеном assignDigit в сторе не увеличивается errorCounter, если переданное число является верным для данной клетки', () => {
   const testState = {
     ...initialState
-  }
+  };
   const digit = puzzles.firstPuzzle.solution[rowIndex][columnIndex];
   const assign_digit = {
     type: ACTION_TYPES.ASSIGN_DIGIT,
     payload: digit
   };
   testState.grid[rowIndex][columnIndex].isChecked = true;
-  for(let row of testState.grid) {
-    for(let cell of row) {
+  for (let row of testState.grid) {
+    for (let cell of row) {
       if (cell.isChecked && cell.isChangeable) {
         console.log(cell);
       }
@@ -83,7 +83,7 @@ test('4 При вызове редьюсера с экшеном assignDigit в 
 test('5 При вызове редьюсера с экшеном assignDigit в сторе увеличивается errorCounter, если переданное число не является верным для данной клетки', () => {
   const testState = {
     ...initialState
-  }
+  };
   const digit = 4;
   const assign_digit = {
     type: ACTION_TYPES.ASSIGN_DIGIT,

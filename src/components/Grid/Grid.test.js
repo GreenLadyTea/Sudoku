@@ -17,8 +17,7 @@ test('Сетка рендерится', () => {
     for (let columnIndex = 0; columnIndex < COLUMNS; columnIndex++) {
       if (initialState.grid[rowIndex][columnIndex].value === 0) {
         expect(elements[index * ROWS + columnIndex]).toHaveTextContent('');
-      }
-      else {
+      } else {
         expect(elements[index * ROWS + columnIndex]).toHaveTextContent(
           initialState.grid[rowIndex][columnIndex].value.toString()
         );

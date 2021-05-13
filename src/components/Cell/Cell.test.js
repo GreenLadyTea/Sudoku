@@ -17,13 +17,7 @@ const store = makeTestStore({ initialState });
 
 test('Клетка рендерится', () => {
   testRender(
-    <Cell
-      id={id}
-      value={0}
-      isChangeable={changeable}
-      isChecked={notChecked}
-      isError={notError}
-    />,
+    <Cell id={id} value={0} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
     {
       store
     }
@@ -36,13 +30,7 @@ test('Клетка рендерится', () => {
 
 test('При нажатии на клетку вызывается store.dispatch с параметром id', () => {
   testRender(
-    <Cell
-      id={id}
-      value={0}
-      isChangeable={changeable}
-      isChecked={notChecked}
-      isError={notError}
-    />,
+    <Cell id={id} value={0} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
     {
       store
     }
@@ -67,13 +55,7 @@ test('Клетка, в которую записано ошибочное зна
 
 test('Невыделенная пустая клетка имеет класс empty-cell', () => {
   testRender(
-    <Cell
-      id={id}
-      value={0}
-      isChangeable={changeable}
-      isChecked={notChecked}
-      isError={notError}
-    />,
+    <Cell id={id} value={0} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
     {
       store
     }
@@ -84,13 +66,7 @@ test('Невыделенная пустая клетка имеет класс e
 
 test('Выделенная непустая изменяемая клетка имеет класс selected-cell', () => {
   testRender(
-    <Cell
-      id={id}
-      value={value}
-      isChangeable={changeable}
-      isChecked={checked}
-      isError={notError}
-    />,
+    <Cell id={id} value={value} isChangeable={changeable} isChecked={checked} isError={notError} />,
     {
       store
     }

@@ -117,10 +117,7 @@ export function assignDigitMutator(state: State, digit: number): State {
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     newState.grid[rowIndex] = newState.grid[rowIndex].map((cell, cellIndex) => {
       if (cell.isChecked && cell.isChangeable) {
-        if (
-          digit ===
-          puzzles[newState.currentPuzzle].solution[rowIndex][cellIndex]
-        ) {
+        if (digit === puzzles[newState.currentPuzzle].solution[rowIndex][cellIndex]) {
           return {
             ...cell,
             value: digit,
