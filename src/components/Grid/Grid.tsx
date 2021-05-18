@@ -15,6 +15,7 @@ export default function Grid() {
               key={cell.id}
               id={cell.id}
               value={cell.value}
+              isPredetermined={cell.isPredetermined}
               isChangeable={cell.isChangeable}
               isChecked={cell.isChecked}
               isError={cell.isError}

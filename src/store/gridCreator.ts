@@ -10,6 +10,7 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
       matrix[rowIndex][columnIndex] = {
         id: index++,
         value,
+        isPredetermined: value !== 0,
         isChangeable: value === 0,
         isChecked: false,
         isError: false

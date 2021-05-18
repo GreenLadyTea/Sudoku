@@ -5,28 +5,24 @@ import { useDispatch } from 'react-redux';
 import { selectCell } from '../../store/actions';
 
 export enum cellStyles {
-  EMPTY = 'empty-cell',
-  UNCHANGEABLE = 'unchangeable-cell',
+  CORRUPTED = 'corrupted-cell',
   SELECTED = 'selected-cell',
+  EMPTY = 'empty-cell',
   SELECTED_EMPTY = 'selected-empty-cell',
-  CHANGEABLE = 'changeable-cell',
-  CORRUPTED = 'corrupted-cell'
+  NOT_PREDETERMINED = 'not-predetermined-cell'
 }
 
 export function stylizeCell(cell: CellType) {
   if (cell.isError) {
     return cellStyles.CORRUPTED;
-  }
-  if (cell.value === 0 && !cell.isChecked) {
-    return cellStyles.EMPTY;
   } else if (cell.value === 0 && cell.isChecked) {
     return cellStyles.SELECTED_EMPTY;
-  } else if (cell.isChecked && cell.isChangeable) {
+  } else if (cell.value === 0) {
+    return cellStyles.EMPTY;
+  } else if (cell.isChecked && !cell.isPredetermined && cell.isChangeable) {
     return cellStyles.SELECTED;
-  } else if (cell.isChangeable) {
-    return cellStyles.CHANGEABLE;
-  } else {
-    return cellStyles.UNCHANGEABLE;
+  } else if (!cell.isPredetermined) {
+    return cellStyles.NOT_PREDETERMINED;
   }
 }
 

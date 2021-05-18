@@ -20,6 +20,7 @@ export const COLUMNS = 9;
 export interface CellType {
   id: number;
   value: number;
+  isPredetermined: boolean;
   isChangeable: boolean;
   isChecked: boolean;
   isError: boolean;

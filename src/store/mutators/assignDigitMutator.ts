@@ -5,12 +5,19 @@ export function assignDigitMutator(state: State, digit: number): State {
   const newGrid = [...state.grid];
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     newGrid[rowIndex] = newGrid[rowIndex].map((cell, cellIndex) => {
-      if (cell.isChecked && cell.isChangeable) {
-        if (digit === puzzles[state.currentPuzzle].solution[rowIndex][cellIndex] || digit === 0) {
+      if (cell.isChecked && !cell.isPredetermined && cell.isChangeable) {
+        if (digit === 0) {
           return {
             ...cell,
             value: digit,
-            isError: false
+            isError: isError
+          };
+        } else if (digit === puzzles[state.currentPuzzle].solution[rowIndex][cellIndex]) {
+          return {
+            ...cell,
+            value: digit,
+            isChangeable: false,
+            isError: isError
           };
         } else {
           isError = true;
