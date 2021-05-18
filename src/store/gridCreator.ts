@@ -1,4 +1,4 @@
-import { COLUMNS, GridType, puzzles, ROWS } from './store';
+import { COLUMNS, GridType, PUZZLES, ROWS } from './store';
 
 export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
   let matrix: GridType = [];
@@ -6,7 +6,7 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     matrix[rowIndex] = [];
     for (let columnIndex = 0; columnIndex < COLUMNS; columnIndex++) {
-      const value = puzzles[puzzleName].game[rowIndex][columnIndex];
+      const value = PUZZLES[puzzleName].game[rowIndex][columnIndex];
       matrix[rowIndex][columnIndex] = {
         id: index++,
         value,

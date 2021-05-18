@@ -1,5 +1,5 @@
 import React from 'react';
-import { digits } from '../../store/store';
+import { DIGITS } from '../../store/store';
 import Button from '../Button/Button';
 import '../Button/Button.css';
 import { useDispatch } from 'react-redux';
@@ -9,7 +9,7 @@ export default function Menu() {
   const dispatch = useDispatch();
   return (
     <>
-      {digits.map(digit => (
+      {DIGITS.map(digit => (
         <Button key={digit} digit={digit} />
       ))}
       <div>

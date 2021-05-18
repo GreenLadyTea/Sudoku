@@ -1,4 +1,5 @@
-import { puzzles, ROWS, State } from '../store';
+import { PUZZLES, ROWS, State } from '../store';
+import { selector } from '../selector';
 
 export function assignDigitMutator(state: State, digit: number): State {
   let isError = false;
@@ -10,14 +11,14 @@ export function assignDigitMutator(state: State, digit: number): State {
           return {
             ...cell,
             value: digit,
-            isError: isError
+            isError: false
           };
-        } else if (digit === puzzles[state.currentPuzzle].solution[rowIndex][cellIndex]) {
+        } else if (digit === PUZZLES[state.currentPuzzle].solution[rowIndex][cellIndex]) {
           return {
             ...cell,
             value: digit,
             isChangeable: false,
-            isError: isError
+            isError: false
           };
         } else {
           isError = true;
@@ -34,6 +35,7 @@ export function assignDigitMutator(state: State, digit: number): State {
   return {
     ...state,
     grid: newGrid,
-    errorCounter: isError ? state.errorCounter + 1 : state.errorCounter
+    errorCounter: isError ? state.errorCounter + 1 : state.errorCounter,
+    gameIsOver: selector(newGrid, state.errorCounter)
   };
 }

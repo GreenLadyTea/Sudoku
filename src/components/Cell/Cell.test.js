@@ -19,7 +19,14 @@ const store = makeTestStore({ initialState });
 
 test('Клетка рендерится', () => {
   testRender(
-    <Cell id={id} value={0} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
+    <Cell
+      id={id}
+      value={0}
+      isPredetermined={notPredetermined}
+      isChangeable={changeable}
+      isChecked={notChecked}
+      isError={notError}
+    />,
     {
       store
     }
@@ -32,7 +39,14 @@ test('Клетка рендерится', () => {
 
 test('При нажатии на клетку вызывается store.dispatch с параметром id', () => {
   testRender(
-    <Cell id={id} value={0} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
+    <Cell
+      id={id}
+      value={0}
+      isPredetermined={notPredetermined}
+      isChangeable={changeable}
+      isChecked={notChecked}
+      isError={notError}
+    />,
     {
       store
     }
@@ -46,7 +60,14 @@ test('При нажатии на клетку вызывается store.dispatc
 
 test('Клетка, в которую записано ошибочное значение, имеет класс corrupted', () => {
   testRender(
-    <Cell id={id} value={value} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={checked} isError={error} />,
+    <Cell
+      id={id}
+      value={value}
+      isPredetermined={notPredetermined}
+      isChangeable={changeable}
+      isChecked={checked}
+      isError={error}
+    />,
     {
       store
     }
@@ -57,7 +78,14 @@ test('Клетка, в которую записано ошибочное зна
 
 test('Невыделенная пустая клетка имеет класс empty-cell', () => {
   testRender(
-    <Cell id={id} value={0} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
+    <Cell
+      id={id}
+      value={0}
+      isPredetermined={notPredetermined}
+      isChangeable={changeable}
+      isChecked={notChecked}
+      isError={notError}
+    />,
     {
       store
     }
@@ -68,7 +96,14 @@ test('Невыделенная пустая клетка имеет класс e
 
 test('Выделенная непустая изменяемая клетка имеет класс selected-cell', () => {
   testRender(
-    <Cell id={id} value={value} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={checked} isError={notError} />,
+    <Cell
+      id={id}
+      value={value}
+      isPredetermined={notPredetermined}
+      isChangeable={changeable}
+      isChecked={checked}
+      isError={notError}
+    />,
     {
       store
     }
@@ -79,7 +114,14 @@ test('Выделенная непустая изменяемая клетка и
 
 test('Выделенная пустая клетка имеет класс selected-empty-cell', () => {
   testRender(
-    <Cell id={id} value={0} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={checked} isError={notError} />,
+    <Cell
+      id={id}
+      value={0}
+      isPredetermined={notPredetermined}
+      isChangeable={changeable}
+      isChecked={checked}
+      isError={notError}
+    />,
     {
       store
     }
@@ -87,7 +129,6 @@ test('Выделенная пустая клетка имеет класс selec
   const element = screen.getByTestId('cell');
   expect(element).toHaveClass(cellStyles.SELECTED_EMPTY);
 });
-
 
 test('<Более неизменяемая клетка имеет класс not-predetermined-cell', () => {
   testRender(
