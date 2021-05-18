@@ -7,6 +7,7 @@ import { selectCell } from '../../store/actions';
 
 const id = 1;
 const value = 3;
+const notPredetermined = false;
 const changeable = true;
 const notChangeable = false;
 const checked = true;
@@ -18,7 +19,7 @@ const store = makeTestStore({ initialState });
 
 test('Клетка рендерится', () => {
   testRender(
-    <Cell id={id} value={0} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
+    <Cell id={id} value={0} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
     {
       store
     }
@@ -29,9 +30,9 @@ test('Клетка рендерится', () => {
   expect(element).toHaveTextContent('');
 });
 
-test('При нажатии на клетку вызывается index.dispatch с параметром id', () => {
+test('При нажатии на клетку вызывается store.dispatch с параметром id', () => {
   testRender(
-    <Cell id={id} value={0} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
+    <Cell id={id} value={0} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
     {
       store
     }
@@ -45,7 +46,7 @@ test('При нажатии на клетку вызывается index.dispatc
 
 test('Клетка, в которую записано ошибочное значение, имеет класс corrupted', () => {
   testRender(
-    <Cell id={id} value={value} isChangeable={changeable} isChecked={checked} isError={error} />,
+    <Cell id={id} value={value} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={checked} isError={error} />,
     {
       store
     }
@@ -56,7 +57,7 @@ test('Клетка, в которую записано ошибочное зна
 
 test('Невыделенная пустая клетка имеет класс empty-cell', () => {
   testRender(
-    <Cell id={id} value={0} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
+    <Cell id={id} value={0} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={notChecked} isError={notError} />,
     {
       store
     }
@@ -67,7 +68,7 @@ test('Невыделенная пустая клетка имеет класс e
 
 test('Выделенная непустая изменяемая клетка имеет класс selected-cell', () => {
   testRender(
-    <Cell id={id} value={value} isChangeable={changeable} isChecked={checked} isError={notError} />,
+    <Cell id={id} value={value} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={checked} isError={notError} />,
     {
       store
     }
@@ -78,7 +79,7 @@ test('Выделенная непустая изменяемая клетка и
 
 test('Выделенная пустая клетка имеет класс selected-empty-cell', () => {
   testRender(
-    <Cell id={id} value={0} isChangeable={changeable} isChecked={checked} isError={notError} />,
+    <Cell id={id} value={0} isPredetermined={notPredetermined} isChangeable={changeable} isChecked={checked} isError={notError} />,
     {
       store
     }
@@ -87,28 +88,13 @@ test('Выделенная пустая клетка имеет класс selec
   expect(element).toHaveClass(cellStyles.SELECTED_EMPTY);
 });
 
-test('Изменяемая невыделенная непустая клетка имеет класс changeable-cell', () => {
-  testRender(
-    <Cell
-      id={id}
-      value={value}
-      isChangeable={changeable}
-      isChecked={notChecked}
-      isError={notError}
-    />,
-    {
-      store
-    }
-  );
-  const element = screen.getByTestId('cell');
-  expect(element).toHaveClass(cellStyles.CHANGEABLE);
-});
 
-test('Неизменяемая клетка имеет класс unchangeable-cell', () => {
+test('<Более неизменяемая клетка имеет класс not-predetermined-cell', () => {
   testRender(
     <Cell
       id={id}
       value={value}
+      isPredetermined={notPredetermined}
       isChangeable={notChangeable}
       isChecked={notChecked}
       isError={notError}
@@ -118,13 +104,14 @@ test('Неизменяемая клетка имеет класс unchangeable-c
     }
   );
   const element = screen.getByTestId('cell');
-  expect(element).toHaveClass(cellStyles.UNCHANGEABLE);
+  expect(element).toHaveClass(cellStyles.NOT_PREDETERMINED);
 });
 
 test('Если клетка с ошибочно вставленным значением, то функция stylizeCell возвращает класс corrupted', () => {
   const cell = {
     id: id,
     value: value,
+    isPredetermined: notPredetermined,
     isChangeable: changeable,
     isChecked: checked,
     isError: error
@@ -137,6 +124,7 @@ test('Если клетка не выделена и пуста, то функц
   const cell = {
     id: id,
     value: 0,
+    isPredetermined: notPredetermined,
     isChangeable: changeable,
     isChecked: notChecked,
     isError: notError
@@ -145,34 +133,24 @@ test('Если клетка не выделена и пуста, то функц
   expect(result).toEqual(cellStyles.EMPTY);
 });
 
-test('Если клетка не выделена, изменяемая и непустая, то функция stylizeCell возвращает класс changeable', () => {
+test('Если клетка не выделена и неизменяемая, то функция stylizeCell возвращает класс not-predetermined', () => {
   const cell = {
     id: id,
     value: value,
-    isChangeable: changeable,
-    isChecked: notChecked,
-    isError: notError
-  };
-  const result = stylizeCell(cell);
-  expect(result).toEqual(cellStyles.CHANGEABLE);
-});
-
-test('Если клетка не выделена и неизменяемая, то функция stylizeCell возвращает класс unchangeable', () => {
-  const cell = {
-    id: id,
-    value: value,
+    isPredetermined: notPredetermined,
     isChangeable: notChangeable,
     isChecked: notChecked,
     isError: notError
   };
   const result = stylizeCell(cell);
-  expect(result).toEqual(cellStyles.UNCHANGEABLE);
+  expect(result).toEqual(cellStyles.NOT_PREDETERMINED);
 });
 
 test('Если клетка выделена и пустая, то функция stylizeCell возвращает класс selected-empty', () => {
   const cell = {
     id: id,
     value: 0,
+    isPredetermined: notPredetermined,
     isChangeable: changeable,
     isChecked: checked,
     isError: notError
@@ -185,6 +163,7 @@ test('Если клетка выделена и не пустая, то функ
   const cell = {
     id: id,
     value: value,
+    isPredetermined: notPredetermined,
     isChangeable: changeable,
     isChecked: checked,
     isError: notError
