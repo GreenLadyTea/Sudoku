@@ -2,7 +2,7 @@ import React from 'react';
 import { CellType } from '../../store/store';
 import './Cell.css';
 import { useDispatch } from 'react-redux';
-import { selectCell } from '../../store/actions';
+import { selectCell } from '../../store/actions/actions';
 
 export enum cellStyles {
   CORRUPTED = 'corrupted-cell',

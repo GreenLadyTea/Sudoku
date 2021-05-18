@@ -1,7 +1,7 @@
 import json from '../puzzles.json';
 import { createStore } from 'redux';
-import { reducer } from './reducer';
-import { makeGrid } from './gridCreator';
+import { reducer } from './reducer/reducer';
+import { makeGrid } from './gridCreator/gridCreator';
 
 type PUZZLES_TYPE = {
   [key: string]: {

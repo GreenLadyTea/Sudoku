@@ -1,6 +1,6 @@
-import { ACTION_TYPES, initialState } from './store';
+import { ACTION_TYPES, initialState } from '../store';
 import { reducer } from './reducer';
-import puzzles from '../puzzles.json';
+import puzzles from '../../puzzles.json';
 
 const rowIndex = 2;
 const columnIndex = 3;

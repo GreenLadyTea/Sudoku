@@ -1,4 +1,4 @@
-import { COLUMNS, GridType, PUZZLES, ROWS } from './store';
+import { COLUMNS, GridType, PUZZLES, ROWS } from '../store';
 
 export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
   let matrix: GridType = [];

@@ -2,7 +2,7 @@ import React from 'react';
 import { fireEvent, screen } from '@testing-library/react';
 import Menu from './Menu';
 import { makeTestStore, testRender } from '../../setupTests';
-import { assignDigit } from '../../store/actions';
+import { assignDigit } from '../../store/actions/actions';
 import { initialState } from '../../store/store';
 
 const store = makeTestStore({ initialState });

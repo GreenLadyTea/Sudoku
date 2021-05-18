@@ -1,7 +1,7 @@
 import React from 'react';
 import './Button.css';
 import { useDispatch } from 'react-redux';
-import { assignDigit } from '../../store/actions';
+import { assignDigit } from '../../store/actions/actions';
 
 type ButtonProps = {
   digit: number;

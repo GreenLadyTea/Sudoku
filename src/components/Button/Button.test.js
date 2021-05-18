@@ -3,7 +3,7 @@ import { fireEvent, screen } from '@testing-library/react';
 import Button from './Button';
 import { makeTestStore, testRender } from '../../setupTests';
 import { initialState } from '../../store/store';
-import { assignDigit } from '../../store/actions';
+import { assignDigit } from '../../store/actions/actions';
 
 const digit = 4;
 

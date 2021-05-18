@@ -3,7 +3,7 @@ import Cell, { cellStyles, stylizeCell } from './Cell';
 import { screen, fireEvent } from '@testing-library/react';
 import { makeTestStore, testRender } from '../../setupTests';
 import { initialState } from '../../store/store';
-import { selectCell } from '../../store/actions';
+import { selectCell } from '../../store/actions/actions';
 
 const id = 1;
 const value = 3;

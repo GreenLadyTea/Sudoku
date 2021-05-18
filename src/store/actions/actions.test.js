@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from './store';
+import { ACTION_TYPES } from '../store';
 import { assignDigit, selectCell } from './actions';
 
 test('1 Создатель экшна selectCell создает новый экшн типа CHOOSE_CELL и с payload равным тому, что ему было передано в параметре', () => {

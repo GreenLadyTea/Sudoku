@@ -1,5 +1,5 @@
-import { COLUMNS, ROWS } from './store';
-import puzzles from '../puzzles.json';
+import { COLUMNS, ROWS } from '../store';
+import puzzles from '../../puzzles.json';
 import { makeGrid } from './gridCreator';
 
 test('1 Создается сетка', () => {

@@ -1,4 +1,4 @@
-import { COLUMNS, ENDGAME_TYPES, GridType, MAXIMUM_AMOUNT_OF_ERRORS, ROWS } from './store';
+import { COLUMNS, ENDGAME_TYPES, GridType, MAXIMUM_AMOUNT_OF_ERRORS, ROWS } from '../store';
 
 function checkIfAllCellsUnchangeable(grid: GridType): boolean {
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {

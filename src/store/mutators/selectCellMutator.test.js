@@ -1,10 +1,10 @@
 import { selectCellMutator } from './selectCellMutator';
-import { makeGrid } from '../gridCreator';
+import { makeGrid } from '../gridCreator/gridCreator';
 import { COLUMNS, ROWS } from '../store';
 
 test('1 Мутатор получает на вход сетку и id возвращает сетку, в которой клетка с данным id имеет isChecked = true, а у всех остальных клеток false', () => {
   const grid = makeGrid('firstPuzzle');
-  const id = 3;
+  const id = 1;
   grid[0][5].isChecked = true;
   const newGrid = selectCellMutator(grid, id);
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {

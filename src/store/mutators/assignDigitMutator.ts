@@ -1,5 +1,5 @@
 import { PUZZLES, ROWS, State } from '../store';
-import { selector } from '../selector';
+import { selector } from '../selector/selector';
 
 export function assignDigitMutator(state: State, digit: number): State {
   let isError = false;

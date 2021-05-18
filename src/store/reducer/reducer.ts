@@ -1,7 +1,7 @@
-import { Action } from './actions';
-import { ACTION_TYPES, initialState, State } from './store';
-import { selectCellMutator } from './mutators/selectCellMutator';
-import { assignDigitMutator } from './mutators/assignDigitMutator';
+import { Action } from '../actions/actions';
+import { ACTION_TYPES, initialState, State } from '../store';
+import { selectCellMutator } from '../mutators/selectCellMutator';
+import { assignDigitMutator } from '../mutators/assignDigitMutator';
 
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {

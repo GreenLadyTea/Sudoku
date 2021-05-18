@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from './store';
+import { ACTION_TYPES } from '../store';
 
 export interface ActionSelectCell {
   type: ACTION_TYPES.SELECT_CELL;
