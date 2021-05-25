@@ -1,4 +1,4 @@
-import { PUZZLES, ROWS, State } from '../store';
+import { CELL_STATE_TYPES, PUZZLES, ROWS, State } from '../store';
 import { selector } from '../selector/selector';
 
 export function assignDigitMutator(state: State, digit: number): State {
@@ -6,26 +6,25 @@ export function assignDigitMutator(state: State, digit: number): State {
   const newGrid = [...state.grid];
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     newGrid[rowIndex] = newGrid[rowIndex].map((cell, cellIndex) => {
-      if (cell.isChecked && !cell.isPredetermined && cell.isChangeable) {
+      if (cell.state === CELL_STATE_TYPES.SELECTED) {
         if (digit === 0) {
           return {
             ...cell,
             value: digit,
-            isError: false
+            state: CELL_STATE_TYPES.EMPTY
           };
         } else if (digit === PUZZLES[state.currentPuzzle].solution[rowIndex][cellIndex]) {
           return {
             ...cell,
             value: digit,
-            isChangeable: false,
-            isError: false
+            state: CELL_STATE_TYPES.ASSIGNED
           };
         } else {
           isError = true;
           return {
             ...cell,
             value: digit,
-            isError: true
+            state: CELL_STATE_TYPES.CORRUPTED
           };
         }
       }
