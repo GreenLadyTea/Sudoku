@@ -6,12 +6,15 @@ export function assignDigitMutator(state: State, digit: number): State {
   const newGrid = [...state.grid];
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     newGrid[rowIndex] = newGrid[rowIndex].map((cell, cellIndex) => {
-      if (cell.state === CELL_STATE_TYPES.SELECTED) {
+      if (
+        cell.state === CELL_STATE_TYPES.SELECTED_EMPTY ||
+        cell.state === CELL_STATE_TYPES.SELECTED_CORRUPTED
+      ) {
         if (digit === 0) {
           return {
             ...cell,
             value: digit,
-            state: CELL_STATE_TYPES.EMPTY
+            state: CELL_STATE_TYPES.SELECTED_EMPTY
           };
         } else if (digit === PUZZLES[state.currentPuzzle].solution[rowIndex][cellIndex]) {
           return {
@@ -24,7 +27,7 @@ export function assignDigitMutator(state: State, digit: number): State {
           return {
             ...cell,
             value: digit,
-            state: CELL_STATE_TYPES.CORRUPTED
+            state: CELL_STATE_TYPES.SELECTED_CORRUPTED
           };
         }
       }

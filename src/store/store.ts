@@ -35,8 +35,8 @@ export enum CELL_STATE_TYPES {
   PREDETERMINED = 'predetermined', //predetermined = true, changeable = false, checked = false, error = false
   EMPTY = 'empty', //predetermined = false, changeable = true, checked = false, error = false
   SELECTED_EMPTY = 'selected-empty', //predetermined = false, changeable = true, checked = true, error = false
-  SELECTED = 'selected', //predetermined = false, changeable = false, checked = true, error = false
-  CORRUPTED = 'corrupted', //predetermined = false, changeable = true, checked = true/false, error = true
+  CORRUPTED = 'corrupted', //predetermined = false, changeable = true, checked = false, error = true
+  SELECTED_CORRUPTED = 'selected-corrupted', //predetermined = false, changeable = true, checked = true, error = true
   ASSIGNED = 'assigned' //predetermined = false, changeable = false, checked = false, error = false
 }
 

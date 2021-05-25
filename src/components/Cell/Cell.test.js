@@ -9,7 +9,7 @@ const id = 1;
 
 const empty = CELL_STATE_TYPES.EMPTY;
 const corrupted = CELL_STATE_TYPES.CORRUPTED;
-const selected = CELL_STATE_TYPES.SELECTED;
+const selectedCorrupted = CELL_STATE_TYPES.SELECTED_CORRUPTED;
 const selectedEmpty = CELL_STATE_TYPES.SELECTED_EMPTY;
 const assigned = CELL_STATE_TYPES.ASSIGNED;
 const predetermined = CELL_STATE_TYPES.PREDETERMINED;
@@ -53,12 +53,12 @@ test('Невыделенная пустая клетка имеет класс e
   expect(element).toHaveClass(empty);
 });
 
-test('Выделенная непустая изменяемая клетка имеет класс selected', () => {
-  testRender(<Cell id={id} value={3} state={selected} />, {
+test('Выделенная непустая изменяемая клетка имеет класс selected-corrupted', () => {
+  testRender(<Cell id={id} value={3} state={selectedCorrupted} />, {
     store
   });
   const element = screen.getByTestId('cell');
-  expect(element).toHaveClass(selected);
+  expect(element).toHaveClass(selectedCorrupted);
 });
 
 test('Выделенная пустая клетка имеет класс selected-empty', () => {

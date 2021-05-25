@@ -1,15 +1,10 @@
-.corrupted {
+.corrupted, .selected-corrupted {
     background-color: red;
     color: white;
 }
 
 .selected-empty {
     background-color: #b6b6b6;
-}
-
-.selected {
-    background-color: #b6b6b6;
-    color: #008b00;
 }
 
 .empty:hover {
