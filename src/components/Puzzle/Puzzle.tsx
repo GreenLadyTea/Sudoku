@@ -11,17 +11,21 @@ export default function Puzzle() {
     <>
       {isGameOver === ENDGAME_TYPES.WIN && (
         <>
-          <div className="win">ПОБЕДА!</div>
+          <div data-testid="puzzle" className="win">
+            ПОБЕДА!
+          </div>
         </>
       )}
       {isGameOver === ENDGAME_TYPES.FAIL && (
         <>
-          <div className="fail">ПОРАЖЕНИЕ! Вы допустили {MAXIMUM_AMOUNT_OF_ERRORS} ошибок!</div>
+          <div data-testid="puzzle" className="fail">
+            ПОРАЖЕНИЕ! Вы допустили {MAXIMUM_AMOUNT_OF_ERRORS} ошибок!
+          </div>
         </>
       )}
       {isGameOver === ENDGAME_TYPES.GAME_IS_NOT_OVER && (
         <>
-          <div>
+          <div data-testid="puzzle">
             <Grid />
             <Menu />
             <ErrorCounter />
