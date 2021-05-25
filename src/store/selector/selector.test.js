@@ -7,7 +7,8 @@ const fullGrid = makeGrid('testFullPuzzle');
 
 test('Селектор возвращает GAME_IS_NOT_OVER, если счетчик только 3 ошибки', () => {
   const result = selector(grid, 3);
-  expect(result).toEqual(ENDGAME_TYPES.GAME_IS_NOT_OVER);});
+  expect(result).toEqual(ENDGAME_TYPES.GAME_IS_NOT_OVER);
+});
 
 test('Селектор возвращает FAIL, если счетчик достиг 5 ошибок', () => {
   const result = selector(grid, 5);
@@ -23,6 +24,7 @@ test('Функция checkIfSudokuIsSolved возвращает false, если 
   const result = checkIfSudokuIsSolved(grid);
   expect(result).toBe(false);
 });
+
 test('Функция checkIfSudokuIsSolved возвращает true, если полученная на вход сетка заполнена целиком', () => {
   const result = checkIfSudokuIsSolved(fullGrid);
   expect(result).toBe(true);
