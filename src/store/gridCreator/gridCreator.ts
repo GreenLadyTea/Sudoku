@@ -1,4 +1,4 @@
-import { COLUMNS, GridType, PUZZLES, ROWS } from '../store';
+import { CELL_STATE_TYPES, COLUMNS, GridType, PUZZLES, ROWS } from '../store';
 
 export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
   let matrix: GridType = [];
@@ -10,10 +10,7 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
       matrix[rowIndex][columnIndex] = {
         id: index++,
         value,
-        isPredetermined: value !== 0,
-        isChangeable: value === 0,
-        isChecked: false,
-        isError: false
+        state: value !== 0 ? CELL_STATE_TYPES.PREDETERMINED : CELL_STATE_TYPES.EMPTY
       };
     }
   }

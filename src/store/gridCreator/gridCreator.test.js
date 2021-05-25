@@ -1,4 +1,4 @@
-import { COLUMNS, ROWS } from '../store';
+import { CELL_STATE_TYPES, COLUMNS, ROWS } from '../store';
 import puzzles from '../../puzzles.json';
 import { makeGrid } from './gridCreator';
 
@@ -11,10 +11,11 @@ test('1 Создается сетка', () => {
       expect(grid[rowIndex][columnIndex].value).toEqual(
         puzzles.firstPuzzle.game[rowIndex][columnIndex]
       );
-      expect(grid[rowIndex][columnIndex].isChangeable).toEqual(
-        grid[rowIndex][columnIndex].value === 0
+      expect(grid[rowIndex][columnIndex].state).toEqual(
+        grid[rowIndex][columnIndex].value !== 0
+          ? CELL_STATE_TYPES.PREDETERMINED
+          : CELL_STATE_TYPES.EMPTY
       );
-      expect(grid[rowIndex][columnIndex].isChecked).toBe(false);
     }
   }
 });

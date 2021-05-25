@@ -1,21 +1,25 @@
-.corrupted-cell {
+.corrupted {
     background-color: red;
     color: white;
 }
 
-.selected-empty-cell {
+.selected-empty {
     background-color: #b6b6b6;
 }
 
-.selected-cell {
+.selected {
     background-color: #b6b6b6;
     color: #008b00;
 }
 
-.empty-cell:hover {
+.empty:hover {
     background-color: #d7d7d7;
 }
 
-.not-predetermined-cell {
+.assigned {
     color: #008b00;
+}
+
+.predetermined {
+    font-weight: bold;
 }

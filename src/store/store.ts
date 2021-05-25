@@ -22,7 +22,7 @@ export const COLUMNS = 9;
 export interface CellType {
   id: number;
   value: number;
-  state: number;
+  state: string;
 }
 
 export enum ENDGAME_TYPES {
@@ -32,11 +32,12 @@ export enum ENDGAME_TYPES {
 }
 
 export enum CELL_STATE_TYPES {
-  PREDETERMINED,  //predetermined = true, changeable = false, checked = false, error = false
-  EMPTY,          //predetermined = false, changeable = true, checked = false, error = false
-  SELECTED_EMPTY, //predetermined = false, changeable = true, checked = true, error = false
-  CORRUPTED,      //predetermined = false, changeable = true, checked = true/false, error = true
-  ASSIGNED        //predetermined = false, changeable = false, checked = false, error = false
+  PREDETERMINED = 'predetermined', //predetermined = true, changeable = false, checked = false, error = false
+  EMPTY = 'empty', //predetermined = false, changeable = true, checked = false, error = false
+  SELECTED_EMPTY = 'selected-empty', //predetermined = false, changeable = true, checked = true, error = false
+  SELECTED = 'selected', //predetermined = false, changeable = false, checked = true, error = false
+  CORRUPTED = 'corrupted', //predetermined = false, changeable = true, checked = true/false, error = true
+  ASSIGNED = 'assigned' //predetermined = false, changeable = false, checked = false, error = false
 }
 
 export type GridType = CellType[][];

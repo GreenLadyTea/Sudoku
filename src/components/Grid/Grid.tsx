@@ -10,17 +10,7 @@ export default function Grid() {
     <>
       <div className="grid-container" data-testid="grid">
         {matrix.map(row =>
-          row.map(cell => (
-            <Cell
-              key={cell.id}
-              id={cell.id}
-              value={cell.value}
-              isPredetermined={cell.isPredetermined}
-              isChangeable={cell.isChangeable}
-              isChecked={cell.isChecked}
-              isError={cell.isError}
-            />
-          ))
+          row.map(cell => <Cell key={cell.id} id={cell.id} value={cell.value} state={cell.state} />)
         )}
       </div>
     </>
