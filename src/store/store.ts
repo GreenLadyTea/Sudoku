@@ -22,16 +22,21 @@ export const COLUMNS = 9;
 export interface CellType {
   id: number;
   value: number;
-  isPredetermined: boolean;
-  isChangeable: boolean;
-  isChecked: boolean;
-  isError: boolean;
+  state: number;
 }
 
 export enum ENDGAME_TYPES {
   FAIL,
   WIN,
   GAME_IS_NOT_OVER
+}
+
+export enum CELL_STATE_TYPES {
+  PREDETERMINED,  //predetermined = true, changeable = false, checked = false, error = false
+  EMPTY,          //predetermined = false, changeable = true, checked = false, error = false
+  SELECTED_EMPTY, //predetermined = false, changeable = true, checked = true, error = false
+  CORRUPTED,      //predetermined = false, changeable = true, checked = true/false, error = true
+  ASSIGNED        //predetermined = false, changeable = false, checked = false, error = false
 }
 
 export type GridType = CellType[][];
