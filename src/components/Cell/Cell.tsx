@@ -8,7 +8,11 @@ export default function Cell(cell: CellType) {
   const dispatch = useDispatch();
   return (
     <>
-      <div className={cell.state} data-testid="cell" onClick={() => dispatch(selectCell(cell.id))}>
+      <div
+        className={'grid-cell ' + cell.state}
+        data-testid="cell"
+        onClick={() => dispatch(selectCell(cell.id))}
+      >
         {cell.value !== 0 ? cell.value : ''}
       </div>
     </>

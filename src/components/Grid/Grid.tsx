@@ -9,9 +9,13 @@ export default function Grid() {
   return (
     <>
       <div className="grid-container" data-testid="grid">
-        {matrix.map(row =>
-          row.map(cell => <Cell key={cell.id} id={cell.id} value={cell.value} state={cell.state} />)
-        )}
+        {matrix.map((row, rowIndex) => (
+          <div className="grid-row" key={rowIndex}>
+            {row.map(cell => (
+              <Cell key={cell.id} id={cell.id} value={cell.value} state={cell.state} />
+            ))}
+          </div>
+        ))}
       </div>
     </>
   );
