@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from '../store';
+import { ACTION_TYPES, MODE_TYPES } from '../store';
 
 export interface ActionSelectCell {
   type: ACTION_TYPES.SELECT_CELL;
@@ -10,7 +10,12 @@ export interface ActionAssignDigit {
   payload: number;
 }
 
-export type Action = ActionSelectCell | ActionAssignDigit;
+export interface ActionChangeMode {
+  type: ACTION_TYPES.CHANGE_MODE;
+  payload: MODE_TYPES;
+}
+
+export type Action = ActionSelectCell | ActionAssignDigit | ActionChangeMode;
 
 export const selectCell = (content: number) => ({
   type: ACTION_TYPES.SELECT_CELL,
@@ -19,5 +24,10 @@ export const selectCell = (content: number) => ({
 
 export const assignDigit = (content: number) => ({
   type: ACTION_TYPES.ASSIGN_DIGIT,
+  payload: content
+});
+
+export const changeMode = (content: MODE_TYPES) => ({
+  type: ACTION_TYPES.CHANGE_MODE,
   payload: content
 });

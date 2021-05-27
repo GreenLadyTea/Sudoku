@@ -19,18 +19,6 @@ export const PUZZLES: PUZZLES_TYPE = json;
 export const ROWS = 9;
 export const COLUMNS = 9;
 
-export interface CellType {
-  id: number;
-  value: number;
-  state: string;
-}
-
-export enum ENDGAME_TYPES {
-  FAIL,
-  WIN,
-  GAME_IS_NOT_OVER
-}
-
 export enum CELL_STATE_TYPES {
   PREDETERMINED = 'predetermined',
   EMPTY = 'empty',
@@ -40,25 +28,45 @@ export enum CELL_STATE_TYPES {
   ASSIGNED = 'assigned'
 }
 
+export interface CellType {
+  id: number;
+  value: number;
+  state: CELL_STATE_TYPES;
+}
+
 export type GridType = CellType[][];
+
+export enum ENDGAME_TYPES {
+  FAIL,
+  WIN,
+  GAME_IS_NOT_OVER
+}
+
+export enum MODE_TYPES {
+  PENCIL,
+  PEN
+}
 
 export type State = {
   grid: GridType;
   currentPuzzle: string;
   errorCounter: number;
-  gameIsOver: number;
+  gameIsOver: ENDGAME_TYPES;
+  mode: MODE_TYPES;
 };
 
 const initialState: State = {
   grid: makeGrid(),
   currentPuzzle: 'firstPuzzle',
   errorCounter: 0,
-  gameIsOver: ENDGAME_TYPES.GAME_IS_NOT_OVER
+  gameIsOver: ENDGAME_TYPES.GAME_IS_NOT_OVER,
+  mode: MODE_TYPES.PEN
 };
 
 export enum ACTION_TYPES {
   SELECT_CELL = 'selectCell',
-  ASSIGN_DIGIT = 'assignDigit'
+  ASSIGN_DIGIT = 'assignDigit',
+  CHANGE_MODE = 'changeMode'
 }
 
 const store = createStore(reducer);

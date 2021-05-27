@@ -1,4 +1,4 @@
-import { ACTION_TYPES, CELL_STATE_TYPES, initialState } from '../store';
+import { ACTION_TYPES, CELL_STATE_TYPES, initialState, MODE_TYPES } from '../store';
 import { reducer } from './reducer';
 import puzzles from '../../puzzles.json';
 
@@ -7,11 +7,11 @@ test('1 При вызове редьюсера с экшеном selectCell во
     ...initialState
   };
   const id = 10;
-  const choose_cell = {
+  const select_cell = {
     type: ACTION_TYPES.SELECT_CELL,
     payload: id
   };
-  const result = reducer(testState, choose_cell);
+  const result = reducer(testState, select_cell);
   expect(result.grid[1][1].state).toBe(CELL_STATE_TYPES.SELECTED_EMPTY);
 });
 
@@ -57,4 +57,17 @@ test('4 При вызове редьюсера с экшеном assignDigit в 
   const result = reducer(testState, assign_digit);
   expect(result.grid[2][3].value).not.toEqual(puzzles.firstPuzzle.solution[2][3]);
   expect(result.errorCounter).toEqual(1);
+});
+
+test('5 При вызове редьюсера с экшеном changeMode возвращается состояние стора, в котором поле mode имеет переданное в payload значение', () => {
+  const testState = {
+    ...initialState
+  };
+  const content = MODE_TYPES.PENCIL;
+  const change_mode = {
+    type: ACTION_TYPES.CHANGE_MODE,
+    payload: content
+  };
+  const result = reducer(testState, change_mode);
+  expect(result.mode).toEqual(content);
 });
