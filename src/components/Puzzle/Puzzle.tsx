@@ -4,6 +4,7 @@ import Grid from '../Grid/Grid';
 import Menu from '../Menu/Menu';
 import ErrorCounter from '../ErrorCounter/ErrorCounter';
 import React from 'react';
+import ModeSwitcher from '../ModeSwitcher/ModeSwitcher';
 
 export default function Puzzle() {
   const isGameOver = useSelector((state: State) => state.gameIsOver);
@@ -29,6 +30,7 @@ export default function Puzzle() {
             <Grid />
             <Menu />
             <ErrorCounter />
+            <ModeSwitcher />
           </div>
         </>
       )}

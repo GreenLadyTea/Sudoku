@@ -43,8 +43,8 @@ export enum ENDGAME_TYPES {
 }
 
 export enum MODE_TYPES {
-  PENCIL,
-  PEN
+  PENCIL = 'карандашик',
+  PEN = 'ручка'
 }
 
 export type State = {
