@@ -11,6 +11,7 @@ type PUZZLES_TYPE = {
 };
 
 export const DIGITS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+
 export const CELL_DIGITS = [
   [1, 2, 3],
   [4, 5, 6],
@@ -37,6 +38,7 @@ export interface CellType {
   id: number;
   value: number;
   state: CELL_STATE_TYPES;
+  digitsArray: number[];
 }
 
 export type GridType = CellType[][];

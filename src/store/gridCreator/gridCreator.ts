@@ -10,7 +10,8 @@ export function makeGrid(puzzleName = 'firstPuzzle'): GridType {
       matrix[rowIndex][columnIndex] = {
         id: index++,
         value,
-        state: value !== 0 ? CELL_STATE_TYPES.PREDETERMINED : CELL_STATE_TYPES.EMPTY
+        state: value !== 0 ? CELL_STATE_TYPES.PREDETERMINED : CELL_STATE_TYPES.EMPTY,
+        digitsArray: []
       };
     }
   }

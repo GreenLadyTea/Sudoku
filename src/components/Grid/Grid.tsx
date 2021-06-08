@@ -12,7 +12,13 @@ export default function Grid() {
         {matrix.map((row, rowIndex) => (
           <div className="grid-row" key={rowIndex}>
             {row.map(cell => (
-              <Cell key={cell.id} id={cell.id} value={cell.value} state={cell.state} />
+              <Cell
+                key={cell.id}
+                id={cell.id}
+                value={cell.value}
+                state={cell.state}
+                digitsArray={cell.digitsArray}
+              />
             ))}
           </div>
         ))}
