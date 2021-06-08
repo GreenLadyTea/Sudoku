@@ -12,6 +12,7 @@ export function reducer(state = initialState, action: Action): State {
       return assignDigitMutator(state, action.payload);
     }
     case ACTION_TYPES.CHANGE_MODE: {
+      console.log(state.mode);
       return { ...state, mode: action.payload };
     }
     default:

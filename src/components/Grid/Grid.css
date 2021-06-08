@@ -18,9 +18,9 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 30pt;
 }
 
 .grid-container .grid-row .grid-cell:nth-child(3n) {
     margin-right: 7px;
 }
+

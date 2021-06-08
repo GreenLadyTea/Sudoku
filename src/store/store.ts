@@ -11,6 +11,11 @@ type PUZZLES_TYPE = {
 };
 
 export const DIGITS = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+export const CELL_DIGITS = [
+  [1, 2, 3],
+  [4, 5, 6],
+  [7, 8, 9]
+];
 
 export const MAXIMUM_AMOUNT_OF_ERRORS = 5;
 
