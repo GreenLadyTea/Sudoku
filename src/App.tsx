@@ -6,6 +6,7 @@ export default class App extends React.Component {
     return (
       <div className="wrapper">
         <h1>Судоку</h1>
+        <h2>Лёгкий</h2>
       </div>
     );
   }
