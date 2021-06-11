@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import Grid from './components/Grid/Grid';
 import puzzles from './puzzles.json';
+import Menu from './components/Menu/Menu';
 
 export function makeGrid() {
   const ROWS = 9;
@@ -27,6 +28,7 @@ export default class App extends React.Component {
       <div className="wrapper">
         <h1>Судоку</h1>
         <Grid matrix={makeGrid()} />
+        <Menu />
       </div>
     );
   }
