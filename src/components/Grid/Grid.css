@@ -1,0 +1,29 @@
+.grid {
+}
+
+.grid-row {
+    display: flex;
+    flex-direction: row;
+}
+
+.grid-row:nth-child(3n) {
+    margin-bottom: 7px;
+}
+
+.grid .grid-row .grid-cell {
+    min-width: 48px;
+    min-height: 48px;
+    margin: 1px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.grid .grid-row .grid-cell:nth-child(3n) {
+    margin-right: 7px;
+}
+
+.grid-cell {
+    font-size: 26pt;
+}
