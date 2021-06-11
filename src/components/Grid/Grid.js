@@ -4,14 +4,14 @@ import './Grid.css';
 
 export default class Grid extends Component {
   render() {
-    const { matrix } = this.props;
+    const { matrix, handleClickCell } = this.props;
     return (
       <>
         <div className="grid">
           {matrix.map((row, rowIndex) => (
             <div className="grid-row" key={rowIndex}>
               {row.map(cell => (
-                <Cell key={cell.id} id={cell.id} value={cell.value} />
+                <Cell key={cell.id} id={cell.id} value={cell.value} handleClick={handleClickCell} />
               ))}
             </div>
           ))}
