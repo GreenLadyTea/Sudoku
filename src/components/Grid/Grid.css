@@ -11,8 +11,8 @@
 }
 
 .grid-container .grid-row .grid-cell {
-    min-width: 48px;
-    min-height: 48px;
+    min-width: 38px;
+    min-height: 38px;
     margin: 1px;
     border: 1px solid black;
     display: flex;

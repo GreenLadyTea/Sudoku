@@ -7,14 +7,14 @@
 }
 
 .mini-grid .mini-grid-row .mini-grid-cell {
-    min-width: 12px;
-    min-height: 12px;
+    min-width: 8px;
+    min-height: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 13px;
+    font-size: 7px;
 }
 
 .mini-grid-cell {
-    margin-right: 4px;
+    margin-right: 2px;
 }

@@ -12,7 +12,7 @@ export function checkIfSudokuIsSolved(grid: GridType): boolean {
 }
 
 export function selector(grid: GridType, errorCounter: number): number {
-  if (errorCounter > MAXIMUM_AMOUNT_OF_ERRORS - 1) {
+  if (errorCounter > MAXIMUM_AMOUNT_OF_ERRORS - 2) {
     return ENDGAME_TYPES.FAIL;
   } else if (checkIfSudokuIsSolved(grid)) {
     return ENDGAME_TYPES.WIN;
