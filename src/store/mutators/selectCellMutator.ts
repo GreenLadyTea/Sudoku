@@ -14,9 +14,13 @@ export function changeCell(cell: CellType, id: number): CellType {
 }
 
 export function selectCellMutator(grid: GridType, id: number): GridType {
-  const newGrid = [...grid];
+  const newGrid = [...grid.game];
+  const newSolution = [...grid.solution];
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     newGrid[rowIndex] = newGrid[rowIndex].map(cell => changeCell(cell, id));
   }
-  return newGrid;
+  return {
+    game: newGrid,
+    solution: newSolution
+  };
 }

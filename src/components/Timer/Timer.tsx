@@ -1,21 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import './Timer.css';
-import { useSelector } from 'react-redux';
-import { ENDGAME_TYPES, State } from '../../store/store';
 
 export default function Timer() {
   const [time, setTime] = useState(0);
-  const gameOver = useSelector((state: State) => state.gameIsOver);
 
   useEffect(() => {
     const timerId = setInterval(() => {
-      setTime(prevState => {
-        if (gameOver === ENDGAME_TYPES.GAME_IS_NOT_OVER) {
-          return prevState + 1;
-        } else {
-          return prevState;
-        }
-      });
+      setTime(prevState => prevState + 1);
     }, 1000);
 
     return () => {

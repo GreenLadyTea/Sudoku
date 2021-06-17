@@ -9,7 +9,7 @@ export default function Grid() {
   return (
     <>
       <div className="grid-container" data-testid="grid">
-        {matrix.map((row, rowIndex) => (
+        {matrix.game.map((row, rowIndex) => (
           <div className="grid-row" key={rowIndex}>
             {row.map(cell => (
               <Cell

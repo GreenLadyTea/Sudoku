@@ -1,6 +1,6 @@
-import { COLUMNS, ENDGAME_TYPES, GridType, MAXIMUM_AMOUNT_OF_ERRORS, ROWS } from '../store';
+import { CellType, COLUMNS, ENDGAME_TYPES, MAXIMUM_AMOUNT_OF_ERRORS, ROWS } from '../store';
 
-export function checkIfSudokuIsSolved(grid: GridType): boolean {
+export function checkIfSudokuIsSolved(grid: CellType[][]): boolean {
   for (let rowIndex = 0; rowIndex < ROWS; rowIndex++) {
     for (let columnIndex = 0; columnIndex < COLUMNS; columnIndex++) {
       if (grid[rowIndex][columnIndex].value === 0) {
@@ -11,7 +11,7 @@ export function checkIfSudokuIsSolved(grid: GridType): boolean {
   return true;
 }
 
-export function selector(grid: GridType, errorCounter: number): number {
+export function selector(grid: CellType[][], errorCounter: number): number {
   if (errorCounter > MAXIMUM_AMOUNT_OF_ERRORS - 2) {
     return ENDGAME_TYPES.FAIL;
   } else if (checkIfSudokuIsSolved(grid)) {

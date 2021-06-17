@@ -1,6 +1,7 @@
 import json from '../puzzles.json';
 import { createStore } from 'redux';
 import { reducer } from './reducer/reducer';
+import { Sudoku } from './Sudoku';
 import { makeGrid } from './gridCreator/gridCreator';
 
 type PUZZLES_TYPE = {
@@ -41,7 +42,10 @@ export interface CellType {
   digitsArray: number[];
 }
 
-export type GridType = CellType[][];
+export interface GridType {
+  game: CellType[][];
+  solution: number[][];
+}
 
 export enum ENDGAME_TYPES {
   FAIL,
@@ -62,6 +66,42 @@ export type State = {
   mode: MODE_TYPES;
 };
 
+export interface SudokuType {
+  gameGrid: number[][];
+  solutionGrid: number[][];
+}
+
+export function initializeSudoku(): SudokuType {
+  let puzzleName = 'firstPuzzle';
+  const seed = getRandomIntInclusive(1, 4);
+
+  switch (seed) {
+    case 1:
+      puzzleName = 'firstPuzzle';
+      break;
+    case 2:
+      puzzleName = 'secondPuzzle';
+      break;
+    case 3:
+      puzzleName = 'thirdPuzzle';
+      break;
+    case 4:
+      puzzleName = 'fourthPuzzle';
+      break;
+  }
+
+  let sudoku = new Sudoku(puzzleName);
+  sudoku.mix(seed);
+
+  const solutionGrid = sudoku.readyGrid;
+  const gameGrid = sudoku.gridForGame;
+
+  return {
+    gameGrid,
+    solutionGrid
+  };
+}
+
 const initialState: State = {
   grid: makeGrid(),
   currentPuzzle: 'firstPuzzle',
@@ -74,6 +114,12 @@ export enum ACTION_TYPES {
   SELECT_CELL = 'selectCell',
   ASSIGN_DIGIT = 'assignDigit',
   CHANGE_MODE = 'changeMode'
+}
+
+export function getRandomIntInclusive(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min; //Максимум и минимум включаются
 }
 
 const store = createStore(reducer);
