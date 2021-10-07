@@ -1,14 +1,14 @@
 import { createStore } from 'redux';
 
-export type Goal = {
+export type GoalType = {
   id: string;
   name: string;
   date: string;
-  isDone: boolean;
+  isCompleted: boolean;
 };
 
 export type State = {
-  list: Goal[];
+  list: GoalType[];
 };
 
 const initialState: State = {
@@ -18,12 +18,12 @@ const initialState: State = {
 export enum ACTION_TYPES {
   ADD = 'add',
   REMOVE = 'remove',
-  CHECK = 'check'
+  COMPLETE = 'complete'
 }
 
 export interface ActionAddGoal {
   type: ACTION_TYPES.ADD;
-  payload: Goal;
+  payload: GoalType;
 }
 
 export interface ActionDeleteGoal {
@@ -31,12 +31,12 @@ export interface ActionDeleteGoal {
   payload: string;
 }
 
-export interface ActionCheckGoal {
-  type: ACTION_TYPES.CHECK;
+export interface ActionCompleteGoal {
+  type: ACTION_TYPES.COMPLETE;
   payload: boolean;
 }
 
-export type Action = ActionAddGoal | ActionDeleteGoal;
+export type Action = ActionAddGoal | ActionDeleteGoal | ActionCompleteGoal;
 
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
@@ -52,7 +52,7 @@ export function reducer(state = initialState, action: Action): State {
   return state;
 }
 
-export const add = (content: Goal) => ({
+export const add = (content: GoalType) => ({
   type: ACTION_TYPES.ADD,
   payload: content
 });
@@ -62,8 +62,8 @@ export const remove = (content: string) => ({
   payload: content
 });
 
-export const check = (content: string) => ({
-  type: ACTION_TYPES.REMOVE,
+export const complete = (content: boolean) => ({
+  type: ACTION_TYPES.COMPLETE,
   payload: content
 });
 

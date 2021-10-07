@@ -1,7 +1,7 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import { makeTestStore, testRender } from '../../setupTests';
-import MyGoal from './Goal';
+import Goal from './Goal';
 
 test('Отображает имя цели', () => {
   const testState = {
@@ -11,11 +11,16 @@ test('Отображает имя цели', () => {
     id: '1',
     name: 'Стать президентом',
     date: '01/01/2001',
-    isDone: false
+    isCompleted: false
   };
   const store = makeTestStore({ testState });
   testRender(
-    <MyGoal id={testGoal.id} name={testGoal.name} date={testGoal.date} isDone={testGoal.isDone} />,
+    <Goal
+      id={testGoal.id}
+      name={testGoal.name}
+      date={testGoal.date}
+      isCompleted={testGoal.isCompleted}
+    />,
     { store }
   );
   const nameElement = screen.getByTestId('goal-name');
