@@ -3,15 +3,3 @@
     margin: 0 auto;
     padding: 10px;
 }
-
-.win {
-    text-align: center;
-    color: #880000;
-    font-size: 64pt;
-}
-
-.fail {
-    text-align: center;
-    color: #5e5e5e;
-    font-size: 60pt;
-}
