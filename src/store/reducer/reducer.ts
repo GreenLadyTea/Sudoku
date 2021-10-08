@@ -12,7 +12,7 @@ export function reducer(state = initialState, action: Action): State {
       };
     }
     case ACTION_TYPES.COMPLETE: {
-      let goalsList = { ...state.list };
+      let goalsList = [...state.list];
       for (let i = 0; i < goalsList.length; i++) {
         if (goalsList[i].id === action.payload) {
           goalsList[i].isCompleted = !goalsList[i].isCompleted;

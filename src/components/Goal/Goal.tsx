@@ -1,6 +1,7 @@
 import React from 'react';
-import { GoalType, remove } from '../../store/store';
+import { GoalType } from '../../store/store';
 import { useDispatch } from 'react-redux';
+import { remove } from '../../store/actions/actions';
 
 export default function Goal(goal: GoalType) {
   const dispatch = useDispatch();
