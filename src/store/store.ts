@@ -8,12 +8,22 @@ export type GoalType = {
   isCompleted: boolean;
 };
 
+export enum FILTER_TYPES {
+  ALL,
+  DONE,
+  NOT_DONE
+}
+
+export type FILTER_TYPE = FILTER_TYPES.ALL | FILTER_TYPES.DONE | FILTER_TYPES.NOT_DONE;
+
 export type State = {
   list: GoalType[];
+  filtered: FILTER_TYPE;
 };
 
 const initialState: State = {
-  list: []
+  list: [],
+  filtered: FILTER_TYPES.ALL
 };
 
 export enum ACTION_TYPES {
