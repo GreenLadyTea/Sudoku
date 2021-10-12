@@ -17,3 +17,30 @@ export function makeTestStore({ initialState, store = createStore(reducer, initi
   store.dispatch = jest.fn(origDispatch);
   return store;
 }
+
+export const arrayList = [
+  {
+    id: '0',
+    name: 'Вытереть пыль',
+    date: '09-10-2021',
+    isCompleted: true
+  },
+  {
+    id: '1',
+    name: 'Полить цветы',
+    date: '10-10-2021',
+    isCompleted: false
+  },
+  {
+    id: '2',
+    name: 'Помыть посуду',
+    date: '11-10-2021',
+    isCompleted: false
+  },
+  {
+    id: '3',
+    name: 'Погладить кота',
+    date: '12-10-2021',
+    isCompleted: true
+  }
+];
