@@ -47,7 +47,6 @@ test('При экшне complete reducer возвращает состояние
     type: ACTION_TYPES.COMPLETE,
     payload: testElement.id
   };
-
   const result = reducer(testState, testAction);
   expect(result.list[0].isCompleted).toBe(true);
 });

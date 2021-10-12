@@ -1,7 +1,8 @@
 import React from 'react';
-import { screen } from '@testing-library/react';
+import { fireEvent, screen } from '@testing-library/react';
 import { makeTestStore, testRender } from '../../setupTests';
 import Goal from './Goal';
+import { complete, remove } from '../../store/actions/actions';
 
 const testGoal = {
   id: '1',
@@ -46,6 +47,28 @@ test('При клике на чекбокс элемента вызываетс�
     />,
     { store }
   );
-  //const element = screen.getByTestId('checkbox');
+  const element = screen.getByTestId('checkbox');
   expect(store.dispatch).not.toBeCalled();
+  fireEvent.click(element);
+  expect(store.dispatch).toBeCalledWith(complete(testGoal.id));
+});
+
+test('При клике на кнопку удаления вызывается dispatch с экшном remove', () => {
+  const testState = {
+    list: [testGoal]
+  };
+  const store = makeTestStore({ testState });
+  testRender(
+    <Goal
+      id={testGoal.id}
+      name={testGoal.name}
+      date={testGoal.date}
+      isCompleted={testGoal.isCompleted}
+    />,
+    { store }
+  );
+  const element = screen.getByTestId('delete-button');
+  expect(store.dispatch).not.toBeCalled();
+  fireEvent.click(element);
+  expect(store.dispatch).toBeCalledWith(remove(testGoal.id));
 });
