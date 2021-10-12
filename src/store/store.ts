@@ -19,11 +19,13 @@ export type FILTER_TYPE = FILTER_TYPES.ALL | FILTER_TYPES.DONE | FILTER_TYPES.NO
 export type State = {
   list: GoalType[];
   filtered: FILTER_TYPE;
+  searchBar: string;
 };
 
 const initialState: State = {
   list: [],
-  filtered: FILTER_TYPES.ALL
+  filtered: FILTER_TYPES.ALL,
+  searchBar: ''
 };
 
 export enum ACTION_TYPES {
