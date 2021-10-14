@@ -1,8 +1,13 @@
-import { ACTION_TYPES, GoalType } from '../store';
+import { ACTION_TYPES } from '../store';
+
+export type NameDate = {
+  name: string;
+  date: string;
+};
 
 export interface ActionAddGoal {
   type: ACTION_TYPES.ADD;
-  payload: GoalType;
+  payload: NameDate;
 }
 
 export interface ActionDeleteGoal {
@@ -17,7 +22,7 @@ export interface ActionCompleteGoal {
 
 export type Action = ActionAddGoal | ActionDeleteGoal | ActionCompleteGoal;
 
-export const add = (content: GoalType) => ({
+export const add = (content: NameDate) => ({
   type: ACTION_TYPES.ADD,
   payload: content
 });

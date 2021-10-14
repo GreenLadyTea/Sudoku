@@ -3,8 +3,15 @@ import { Action } from '../actions/actions';
 
 export function reducer(state = initialState, action: Action): State {
   switch (action.type) {
-    case ACTION_TYPES.ADD:
-      return { ...state, list: [...state.list, action.payload] };
+    case ACTION_TYPES.ADD: {
+      const newElement = {
+        id: Math.random().toString(36).substr(2),
+        name: action.payload.name,
+        date: action.payload.date,
+        isCompleted: false
+      };
+      return { ...state, list: [...state.list, newElement] };
+    }
     case ACTION_TYPES.REMOVE: {
       return {
         ...state,
