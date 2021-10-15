@@ -31,7 +31,9 @@ const initialState: State = {
 export enum ACTION_TYPES {
   ADD = 'add',
   REMOVE = 'remove',
-  COMPLETE = 'complete'
+  COMPLETE = 'complete',
+  FILTER = 'filter',
+  SEARCH = 'search'
 }
 
 const store = createStore(reducer);

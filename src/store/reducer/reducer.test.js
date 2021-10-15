@@ -1,5 +1,5 @@
 import { reducer } from './reducer';
-import { ACTION_TYPES, initialState } from '../store';
+import { ACTION_TYPES, FILTER_TYPES, initialState } from '../store';
 
 const testElement = {
   name: '2',
@@ -55,4 +55,29 @@ test('При экшне complete reducer возвращает состояние
   };
   const result = reducer(testState, testAction);
   expect(result.list[0].isCompleted).toBe(true);
+});
+
+test('При экшне filter reducer возвращает состояние стора, в котором state.filtered меняется на то, что передано в payload', () => {
+  const testState = {
+    ...initialState
+  };
+  const testAction = {
+    type: ACTION_TYPES.FILTER,
+    payload: FILTER_TYPES.NOT_DONE
+  };
+  const result = reducer(testState, testAction);
+  expect(result.filtered).toEqual(FILTER_TYPES.NOT_DONE);
+});
+
+test('При экшне search reducer возвращает состояние стора, в котором state.searchBar меняется на то, что передано в payload', () => {
+  const str = 'Re';
+  const testState = {
+    ...initialState
+  };
+  const testAction = {
+    type: ACTION_TYPES.SEARCH,
+    payload: str
+  };
+  const result = reducer(testState, testAction);
+  expect(result.searchBar).toEqual(str);
 });

@@ -1,4 +1,4 @@
-import { ACTION_TYPES } from '../store';
+import { ACTION_TYPES, FILTER_TYPE } from '../store';
 
 export type NameDate = {
   name: string;
@@ -20,7 +20,22 @@ export interface ActionCompleteGoal {
   payload: string;
 }
 
-export type Action = ActionAddGoal | ActionDeleteGoal | ActionCompleteGoal;
+export interface ActionFilter {
+  type: ACTION_TYPES.FILTER;
+  payload: FILTER_TYPE;
+}
+
+export interface ActionSearch {
+  type: ACTION_TYPES.SEARCH;
+  payload: string;
+}
+
+export type Action =
+  | ActionAddGoal
+  | ActionDeleteGoal
+  | ActionCompleteGoal
+  | ActionFilter
+  | ActionSearch;
 
 export const add = (content: NameDate) => ({
   type: ACTION_TYPES.ADD,
@@ -34,5 +49,15 @@ export const remove = (content: string) => ({
 
 export const complete = (content: string) => ({
   type: ACTION_TYPES.COMPLETE,
+  payload: content
+});
+
+export const filter = (content: FILTER_TYPE) => ({
+  type: ACTION_TYPES.FILTER,
+  payload: content
+});
+
+export const search = (content: string) => ({
+  type: ACTION_TYPES.SEARCH,
   payload: content
 });

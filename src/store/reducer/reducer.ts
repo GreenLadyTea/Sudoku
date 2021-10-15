@@ -27,6 +27,18 @@ export function reducer(state = initialState, action: Action): State {
       }
       return { ...state, list: [...goalsList] };
     }
+    case ACTION_TYPES.FILTER: {
+      return {
+        ...state,
+        filtered: action.payload
+      };
+    }
+    case ACTION_TYPES.SEARCH: {
+      return {
+        ...state,
+        searchBar: action.payload
+      };
+    }
   }
   return state;
 }
