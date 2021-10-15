@@ -3,7 +3,7 @@ import { useSelector } from 'react-redux';
 import { selectFilteredList } from '../../store/selector/selector';
 import Goal from '../Goal/Goal';
 
-export function GoalsList() {
+export default function GoalsList() {
   const goals = useSelector(selectFilteredList);
 
   function renderList() {

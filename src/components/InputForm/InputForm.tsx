@@ -5,7 +5,7 @@ import { add } from '../../store/actions/actions';
 
 export default function InputForm() {
   const [textField, setTextField] = useState('');
-  const [dateField, setDateField] = useState('2021-10-10T00:00');
+  const [dateField, setDateField] = useState('');
   const dispatch = useDispatch();
 
   function handleSubmit(e: FormEvent) {
@@ -23,11 +23,13 @@ export default function InputForm() {
       />
       <input
         data-testid="date"
-        type="datetime"
+        type="datetime-local"
         value={dateField}
         onChange={e => setDateField(e.target.value)}
       />
-      <button data-testid="button" onClick={e => handleSubmit(e)} />
+      <button data-testid="button" onClick={e => handleSubmit(e)}>
+        Добавить
+      </button>
     </>
   );
 }
