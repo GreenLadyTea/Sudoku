@@ -57,6 +57,19 @@ test('При экшне complete reducer возвращает состояние
   expect(result.list[0].isCompleted).toBe(true);
 });
 
+test('Если передали id, который не подходит ни одному элементу списка, изменения полей completed не происходит', () => {
+  const testState = {
+    ...initialState,
+    list: [...initialState.list, testElement2]
+  };
+  const testAction = {
+    type: ACTION_TYPES.COMPLETE,
+    payload: '123eye7hfg'
+  };
+  const result = reducer(testState, testAction);
+  expect(result.list[0].isCompleted).not.toEqual(testAction.payload);
+});
+
 test('При экшне filter reducer возвращает состояние стора, в котором state.filtered меняется на то, что передано в payload', () => {
   const testState = {
     ...initialState

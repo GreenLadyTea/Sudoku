@@ -2,6 +2,7 @@ import { FILTER_TYPES, State } from '../../store/store';
 import { useDispatch, useSelector } from 'react-redux';
 import { filter, search } from '../../store/actions/actions';
 import React from 'react';
+import './Filter.css';
 
 export default function Filter() {
   const options = [FILTER_TYPES.ALL, FILTER_TYPES.DONE, FILTER_TYPES.NOT_DONE];
@@ -11,14 +12,14 @@ export default function Filter() {
     <>
       <div>
         <label>
-          Фильтр:
+          Фильтр:{' '}
           <input
             type="text"
             data-testid="search-bar"
             value={searchBar}
             onChange={e => dispatch(search(e.target.value))}
           />
-        </label>
+        </label>{' '}
         {options.map(item => (
           <a key={item} onClick={() => dispatch(filter(item))}>
             {item}{' '}
