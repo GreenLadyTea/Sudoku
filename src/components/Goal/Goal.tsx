@@ -16,7 +16,7 @@ export default function Goal(goal: GoalType) {
           onChange={() => dispatch(complete(goal.id))}
         />
         <span data-testid="goal-name">{goal.name}</span>
-        <span data-testid="goal-date"> {goal.date.replace(tLetter, ' ')}</span>
+        <span data-testid="goal-date"> {goal.date.replace(tLetter, ' ')}</span>{' '}
         <button data-testid="delete-button" onClick={() => dispatch(remove(goal.id))}>
           Удалить
         </button>

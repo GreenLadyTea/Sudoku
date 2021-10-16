@@ -15,7 +15,7 @@ test('Goal отображает цель с именем и датой', () => {
   const testState = {
     list: [testGoal]
   };
-  const store = makeTestStore({ testState });
+  const store = makeTestStore({ initialState: testState });
   testRender(
     <Goal
       id={testGoal.id}
@@ -37,7 +37,7 @@ test('При клике на чекбокс элемента вызываетс�
   const testState = {
     list: [testGoal]
   };
-  const store = makeTestStore({ testState });
+  const store = makeTestStore({ initialState: testState });
   testRender(
     <Goal
       id={testGoal.id}
@@ -57,7 +57,7 @@ test('При клике на кнопку удаления вызывается 
   const testState = {
     list: [testGoal]
   };
-  const store = makeTestStore({ testState });
+  const store = makeTestStore({ initialState: testState });
   testRender(
     <Goal
       id={testGoal.id}

@@ -9,9 +9,9 @@ export type GoalType = {
 };
 
 export enum FILTER_TYPES {
-  ALL,
-  DONE,
-  NOT_DONE
+  ALL = 'Все',
+  DONE = 'Выполненные',
+  NOT_DONE = 'Невыполненные'
 }
 
 export type FILTER_TYPE = FILTER_TYPES.ALL | FILTER_TYPES.DONE | FILTER_TYPES.NOT_DONE;
